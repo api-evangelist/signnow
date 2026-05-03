@@ -1,0 +1,1014 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Authentication
+  description: OAuth2 token management
+- name: Documents
+  description: Upload, manage, and retrieve documents
+- name: Templates
+  description: Create and manage document templates
+- name: Signing
+  description: Send signature invitations and manage signers
+- name: Users
+  description: User account management
+- name: Webhooks
+  description: Event subscription and notification management
+- name: Envelopes
+  description: Document group envelope management
+paths:
+  /oauth2/token:
+    post:
+      operationId: createOAuthToken
+      summary: Create OAuth Token
+      description: Generate an OAuth 2.0 access token using client credentials or password grant type.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - password
+                  - authorization_code
+                  - refresh_token
+                  description: OAuth grant type
+                client_id:
+                  type: string
+                  description: Application client ID
+                client_secret:
+                  type: string
+                  description: Application client secret
+                username:
+                  type: string
+                  description: User email (for password grant)
+                password:
+                  type: string
+                  description: User password (for password grant)
+                code:
+                  type: string
+                  description: Authorization code (for authorization_code grant)
+                refresh_token:
+                  type: string
+                  description: Refresh token (for refresh_token grant)
+      responses:
+        '200':
+          description: Access token generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthToken'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /document:
+    get:
+      operationId: listDocuments
+      summary: List Documents
+      description: Retrieve a list of all documents for the authenticated user.
+      tags:
+      - Documents
+      parameters:
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+        description: Number of documents per page
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Page number
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: uploadDocument
+      summary: Upload Document
+      description: Upload a PDF document to SignNow for e-signature processing.
+      tags:
+      - Documents
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: PDF file to upload
+                Tags:
+                  type: string
+                  description: Comma-separated tags
+      responses:
+        '200':
+          description: Document uploaded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Document ID
+        '400':
+          description: Invalid file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /document/{document_id}:
+    get:
+      operationId: getDocument
+      summary: Get Document
+      description: Retrieve document details including fields, signers, and status.
+      tags:
+      - Documents
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDocument
+      summary: Delete Document
+      description: Permanently delete a document from SignNow.
+      tags:
+      - Documents
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      responses:
+        '200':
+          description: Document deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /document/{document_id}/download:
+    get:
+      operationId: downloadDocument
+      summary: Download Document
+      description: Download a document as a PDF file, including signatures and completed fields.
+      tags:
+      - Documents
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - collapsed
+          - with_history
+        description: Download type
+      responses:
+        '200':
+          description: Document PDF
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Document not found
+  /document/{document_id}/invite:
+    post:
+      operationId: sendSignatureInvite
+      summary: Send Signature Invite
+      description: Send a signature invitation to one or more recipients for a document.
+      tags:
+      - Signing
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteRequest'
+      responses:
+        '200':
+          description: Invitations sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: Invalid invite request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /document/{document_id}/fieldinvitecancel:
+    put:
+      operationId: cancelSignatureInvite
+      summary: Cancel Signature Invite
+      description: Cancel all pending signature invitations for a document.
+      tags:
+      - Signing
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      responses:
+        '200':
+          description: Invite cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '404':
+          description: Document not found
+  /template:
+    get:
+      operationId: listTemplates
+      summary: List Templates
+      description: Retrieve all document templates for the authenticated user.
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+    post:
+      operationId: createTemplate
+      summary: Create Template
+      description: Create a new reusable document template from an uploaded document.
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - document_id
+              - document_name
+              properties:
+                document_id:
+                  type: string
+                  description: Source document ID to convert to template
+                document_name:
+                  type: string
+                  description: Name for the template
+      responses:
+        '200':
+          description: Template created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Template ID
+  /template/{template_id}:
+    get:
+      operationId: getTemplate
+      summary: Get Template
+      description: Retrieve details of a specific document template.
+      tags:
+      - Templates
+      parameters:
+      - name: template_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique template identifier
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '404':
+          description: Template not found
+    delete:
+      operationId: deleteTemplate
+      summary: Delete Template
+      description: Delete a document template from SignNow.
+      tags:
+      - Templates
+      parameters:
+      - name: template_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique template identifier
+      responses:
+        '200':
+          description: Template deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /template/{template_id}/bulkinvite:
+    post:
+      operationId: sendBulkInvite
+      summary: Send Bulk Invite
+      description: Send signature invitations to multiple recipients using a CSV file with template-based documents.
+      tags:
+      - Signing
+      parameters:
+      - name: template_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique template identifier
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: CSV file with recipient data
+                subject:
+                  type: string
+                  description: Email subject line
+                message:
+                  type: string
+                  description: Email message body
+      responses:
+        '200':
+          description: Bulk invites sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /user:
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Create a new SignNow user account.
+      tags:
+      - Users
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '200':
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: User ID
+  /user/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get Current User
+      description: Retrieve the profile information for the authenticated user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+  /user/{user_id}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Retrieve profile information for a specific user by ID.
+      tags:
+      - Users
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique user identifier
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+  /api/events:
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: Retrieve all registered webhook event subscriptions for the account.
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: List of webhook subscriptions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      summary: Create Webhook
+      description: Subscribe to a SignNow event by registering a webhook endpoint URL.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+  /api/events/{webhook_id}:
+    delete:
+      operationId: deleteWebhook
+      summary: Delete Webhook
+      description: Remove a webhook event subscription by ID.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique webhook identifier
+      responses:
+        '200':
+          description: Webhook deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /documentgroup:
+    get:
+      operationId: listEnvelopes
+      summary: List Envelopes
+      description: Retrieve all document group envelopes for the authenticated user.
+      tags:
+      - Envelopes
+      responses:
+        '200':
+          description: List of envelopes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Envelope'
+    post:
+      operationId: createEnvelope
+      summary: Create Envelope
+      description: Create a new document group envelope combining multiple documents for coordinated signing.
+      tags:
+      - Envelopes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvelopeRequest'
+      responses:
+        '200':
+          description: Envelope created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+  /documentgroup/{group_id}:
+    get:
+      operationId: getEnvelope
+      summary: Get Envelope
+      description: Retrieve details of a specific document group envelope.
+      tags:
+      - Envelopes
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique envelope/document group identifier
+      responses:
+        '200':
+          description: Envelope details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        '404':
+          description: Envelope not found
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+  schemas:
+    OAuthToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer access token
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          description: Token expiry in seconds
+        refresh_token:
+          type: string
+          description: Token for refreshing access
+        scope:
+          type: string
+          description: Token scope
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document ID
+        document_name:
+          type: string
+          description: Document name/title
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+        origin_document_id:
+          type: string
+          description: Source template ID if created from template
+        user_id:
+          type: string
+          description: Owner user ID
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              unique_id:
+                type: string
+              name:
+                type: string
+              signing_order:
+                type: integer
+          description: Signing roles defined for this document
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+          description: Form fields in the document
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningRequest'
+          description: Pending signing requests
+        tags:
+          type: array
+          items:
+            type: string
+          description: Document tags
+        page_count:
+          type: integer
+          description: Number of pages in document
+        signing_session_caching:
+          type: boolean
+        fieldinvite_status:
+          type: string
+          enum:
+          - pending
+          - fulfilled
+          - declined
+          - expired
+          description: Overall invite status
+    Field:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - signature
+          - initials
+          - text
+          - date
+          - checkbox
+          - dropdown
+          - radiobutton
+          description: Field type
+        x:
+          type: number
+          description: X coordinate on page
+        y:
+          type: number
+          description: Y coordinate on page
+        width:
+          type: number
+          description: Field width
+        height:
+          type: number
+          description: Field height
+        page_number:
+          type: integer
+          description: Page number (0-indexed)
+        role_id:
+          type: string
+          description: Role assigned to fill this field
+        required:
+          type: boolean
+          description: Whether this field is required
+        label:
+          type: string
+          description: Field label
+    SigningRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        signer_email:
+          type: string
+          format: email
+        status:
+          type: string
+          enum:
+          - pending
+          - fulfilled
+          - declined
+          - expired
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Template ID
+        document_name:
+          type: string
+          description: Template name
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              unique_id:
+                type: string
+              name:
+                type: string
+              signing_order:
+                type: integer
+          description: Signing roles in this template
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        page_count:
+          type: integer
+    InviteRequest:
+      type: object
+      required:
+      - to
+      - from
+      properties:
+        from:
+          type: string
+          format: email
+          description: Sender email address
+        to:
+          type: array
+          items:
+            type: object
+            required:
+            - email
+            - role_id
+            properties:
+              email:
+                type: string
+                format: email
+              role_id:
+                type: string
+              order:
+                type: integer
+              subject:
+                type: string
+              message:
+                type: string
+          description: List of recipients and their signing roles
+        cc:
+          type: array
+          items:
+            type: string
+            format: email
+          description: CC recipients
+        subject:
+          type: string
+          description: Email subject line
+        message:
+          type: string
+          description: Email message body
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        active:
+          type: boolean
+        organization:
+          type: string
+        created:
+          type: string
+          format: date-time
+        credits:
+          type: integer
+          description: Remaining signature credits
+        subscription:
+          type: object
+          properties:
+            api_requests_limit:
+              type: integer
+            api_requests_used:
+              type: integer
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      - password
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        event:
+          type: string
+          enum:
+          - document.update
+          - document.delete
+          - invite.update
+          - invite.decline
+          - document.create
+        entity_id:
+          type: string
+          description: Document or template ID to watch (optional)
+        action:
+          type: string
+          description: Webhook target URL
+        attributes:
+          type: object
+          additionalProperties: true
+    WebhookRequest:
+      type: object
+      required:
+      - event
+      - action
+      properties:
+        event:
+          type: string
+          enum:
+          - document.update
+          - document.delete
+          - invite.update
+          - invite.decline
+          - document.create
+          description: Event type to subscribe to
+        entity_id:
+          type: string
+          description: Specific document or template ID to watch
+        action:
+          type: string
+          description: HTTPS URL to receive webhook events
+        attributes:
+          type: object
+          additionalProperties: true
+    Envelope:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Envelope ID
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              document_name:
+                type: string
+        routing_details:
+          type: object
+          properties:
+            routing_groups:
+              type: array
+              items:
+                type: object
+    EnvelopeRequest:
+      type: object
+      required:
+      - document_ids
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          description: List of document IDs to include in envelope
+        routing_details:
+          type: object
+          description: Routing and signing order configuration
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string

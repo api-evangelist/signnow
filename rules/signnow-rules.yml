@@ -1,0 +1,87 @@
+extends: spectral:oas
+rules:
+  signnow-operation-summary-title-case:
+    description: All operation summaries must use Title Case.
+    message: 'Summary "{{value}}" must use Title Case.'
+    severity: warn
+    given: '$.paths[*][*].summary'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][a-z]+(\s[A-Z][a-z]+)*$'
+
+  signnow-operation-ids-kebab:
+    description: Operation IDs should use camelCase consistent with SignNow conventions.
+    message: 'OperationId "{{value}}" should be camelCase.'
+    severity: warn
+    given: '$.paths[*][*].operationId'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+
+  signnow-bearer-auth-required:
+    description: All operations (except authentication) must require BearerAuth security.
+    message: Operation must declare security requirements.
+    severity: warn
+    given: '$.paths[?(!@property.match(/oauth2/))][*]'
+    then:
+      field: security
+      function: defined
+
+  signnow-document-id-path-param:
+    description: Document ID path parameters should be named document_id.
+    message: 'Document ID path parameters should be named "document_id".'
+    severity: info
+    given: '$.paths./document/{document_id}[*].parameters[*]'
+    then:
+      field: name
+      function: enumeration
+      functionOptions:
+        values:
+        - document_id
+
+  signnow-error-schema-defined:
+    description: Error responses must reference the Error schema.
+    message: Error responses (4xx/5xx) must reference the Error schema component.
+    severity: warn
+    given: "$.paths[*][*].responses[?(@property >= '400')].content['application/json'].schema"
+    then:
+      function: defined
+
+  signnow-response-200-defined:
+    description: All successful operations must define a 200 response.
+    message: Operation must define a 200 success response.
+    severity: error
+    given: '$.paths[*][*].responses'
+    then:
+      field: '200'
+      function: defined
+
+  signnow-tags-defined:
+    description: All operations must include at least one tag.
+    message: Operation must include at least one tag for categorization.
+    severity: warn
+    given: '$.paths[*][*]'
+    then:
+      field: tags
+      function: defined
+
+  signnow-description-present:
+    description: All operations must have a description.
+    message: Operation must include a description.
+    severity: warn
+    given: '$.paths[*][*]'
+    then:
+      field: description
+      function: defined
+
+  signnow-no-empty-paths:
+    description: API paths must not be empty.
+    message: Path must define at least one operation.
+    severity: error
+    given: '$.paths[*]'
+    then:
+      function: length
+      functionOptions:
+        min: 1

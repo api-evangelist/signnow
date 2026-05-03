@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "signnow": "https://docs.signnow.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Document": "schema:DigitalDocument",
+    "Template": "signnow:Template",
+    "Field": "signnow:Field",
+    "SigningRequest": "signnow:SigningRequest",
+    "Role": "signnow:Role",
+
+    "id": "@id",
+    "document_name": "schema:name",
+    "created": {"@id": "schema:dateCreated", "@type": "xsd:dateTime"},
+    "updated": {"@id": "schema:dateModified", "@type": "xsd:dateTime"},
+    "user_id": "schema:creator",
+    "page_count": "schema:numberOfPages",
+    "tags": "schema:keywords",
+    "roles": "signnow:hasRole",
+    "fields": "signnow:hasField",
+    "requests": "signnow:hasSigningRequest",
+    "fieldinvite_status": "signnow:inviteStatus",
+
+    "signer_email": "schema:email",
+    "status": "schema:status",
+    "role_id": "signnow:roleReference",
+    "signing_order": "signnow:signingOrder",
+    "required": "schema:valueRequired",
+    "label": "schema:name",
+    "type": "schema:additionalType",
+
+    "x": "signnow:positionX",
+    "y": "signnow:positionY",
+    "width": "schema:width",
+    "height": "schema:height",
+    "page_number": "signnow:pageNumber"
+  }
+}

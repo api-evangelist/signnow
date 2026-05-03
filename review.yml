@@ -1,0 +1,9 @@
+name: SignNow
+description: SignNow (airSlate) e-signature platform API review.
+url: https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/review.yml
+created: '2026-05-02'
+modified: '2026-05-02'
+reviews:
+- date: '2026-05-02'
+  rating: 4
+  summary: SignNow provides a well-documented REST API with OAuth 2.0 authentication, a public OpenAPI specification, and SDKs for multiple languages. The API covers the complete e-signature lifecycle including documents, templates, bulk invites, and webhooks. Good sandbox environment for testing.

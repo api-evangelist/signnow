@@ -1,0 +1,107 @@
+name: SignNow Vocabulary
+description: Domain vocabulary for the SignNow e-signature platform covering document management, signing workflows, roles, and field types.
+url: https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/vocabulary/signnow-vocabulary.yml
+created: '2026-05-02'
+modified: '2026-05-02'
+tags:
+- E-Signature
+- Document Management
+- Electronic Signature
+terms:
+- term: Document
+  definition: A PDF file uploaded to SignNow for electronic signature processing. Documents contain fields, roles, and signing requests.
+  type: resource
+  relatedTerms:
+  - Template
+  - Field
+  - SigningRequest
+
+- term: Template
+  definition: A reusable document configuration with predefined fields and signing roles. Templates can be used to generate multiple documents with the same structure for bulk or repeated workflows.
+  type: resource
+  relatedTerms:
+  - Document
+  - BulkInvite
+
+- term: Field
+  definition: An interactive element placed on a document page that must be completed by a signer. Field types include signature, initials, text, date, checkbox, dropdown, and radio button.
+  type: concept
+  relatedTerms:
+  - Role
+  - Document
+
+- term: Role
+  definition: A named signing participant position within a document or template. Each role has a signing order and is assigned specific fields to complete.
+  type: concept
+  relatedTerms:
+  - Field
+  - SigningRequest
+
+- term: SigningRequest
+  definition: An invitation sent to a recipient to electronically sign a specific document. Signing requests have a status lifecycle of pending, fulfilled, declined, or expired.
+  type: resource
+  relatedTerms:
+  - Document
+  - Role
+
+- term: Invite
+  definition: The act of sending a signature request to one or more recipients. SignNow supports field-based invites (role-based) and free-form invites.
+  type: action
+  relatedTerms:
+  - SigningRequest
+  - BulkInvite
+
+- term: BulkInvite
+  definition: A batch signature invitation process using a CSV file to send template-based documents to multiple recipients simultaneously.
+  type: action
+  relatedTerms:
+  - Template
+  - Invite
+
+- term: Envelope
+  definition: A document group that combines multiple documents for coordinated signing. All documents in an envelope share a unified signing workflow.
+  type: resource
+  relatedTerms:
+  - Document
+
+- term: Webhook
+  definition: An HTTP callback registered to receive real-time event notifications when document signing events occur (e.g., document.update, invite.update, invite.decline).
+  type: concept
+  relatedTerms:
+  - Event
+
+- term: FieldInviteStatus
+  definition: The current state of a document's signature invitation lifecycle. Values are pending (awaiting signature), fulfilled (all signatures collected), declined (signer refused), or expired (invitation timeout).
+  type: enum
+  values:
+  - pending
+  - fulfilled
+  - declined
+  - expired
+
+- term: OAuthToken
+  definition: An OAuth 2.0 bearer token used to authenticate API requests. Tokens are obtained via the POST /oauth2/token endpoint using client credentials or password grant.
+  type: security
+  relatedTerms:
+  - ClientID
+  - ClientSecret
+
+- term: ClientID
+  definition: The application identifier used in OAuth 2.0 authentication. Created when registering a developer application at signnow.com/developers.
+  type: security
+
+- term: ClientSecret
+  definition: The application secret key used alongside the Client ID for OAuth 2.0 authentication.
+  type: security
+
+- term: SigningOrder
+  definition: An integer indicating the sequential order in which roles must complete signing. Lower numbers sign first.
+  type: concept
+  relatedTerms:
+  - Role
+
+- term: PageNumber
+  definition: A zero-indexed integer specifying which page of a document a field is placed on. Page 0 is the first page.
+  type: concept
+  relatedTerms:
+  - Field

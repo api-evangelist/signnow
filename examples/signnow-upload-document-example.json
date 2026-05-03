@@ -1,0 +1,22 @@
+{
+  "title": "Upload Document Example",
+  "description": "Example request and response for uploading a PDF document to SignNow.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.signnow.com/document",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "multipart/form-data"
+    },
+    "body": {
+      "file": "<binary PDF content>",
+      "Tags": "contract,legal,nda"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "a1b2c3d4e5f6789012345678901234567890abcd"
+    }
+  }
+}

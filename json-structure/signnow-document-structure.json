@@ -1,0 +1,69 @@
+{
+  "title": "SignNow Document Structure",
+  "description": "Structural documentation for the SignNow Document resource and its nested components.",
+  "version": "2.0",
+  "structure": {
+    "Document": {
+      "description": "A SignNow document submitted for e-signature processing.",
+      "fields": {
+        "id": {"type": "string", "description": "Unique document identifier (UUID)."},
+        "document_name": {"type": "string", "description": "Human-readable document name."},
+        "created": {"type": "datetime", "description": "ISO 8601 creation timestamp."},
+        "updated": {"type": "datetime", "description": "ISO 8601 last modified timestamp."},
+        "user_id": {"type": "string", "description": "Owner's user ID."},
+        "origin_document_id": {"type": "string", "description": "Source template ID (if applicable)."},
+        "page_count": {"type": "integer", "description": "Number of document pages."},
+        "fieldinvite_status": {"type": "enum", "values": ["pending", "fulfilled", "declined", "expired"], "description": "Overall signing invite status."},
+        "signing_session_caching": {"type": "boolean", "description": "Session caching enabled flag."},
+        "roles": {"type": "array", "items": "Role", "description": "Defined signing roles."},
+        "fields": {"type": "array", "items": "Field", "description": "Form fields embedded in document."},
+        "requests": {"type": "array", "items": "SigningRequest", "description": "Signing invitations sent."},
+        "tags": {"type": "array", "items": "string", "description": "Organizational tags."}
+      }
+    },
+    "Role": {
+      "description": "A signing role within a document or template.",
+      "fields": {
+        "unique_id": {"type": "string", "description": "Role identifier."},
+        "name": {"type": "string", "description": "Role display name (e.g., Signer, Approver)."},
+        "signing_order": {"type": "integer", "description": "Sequential signing order (1-based)."}
+      }
+    },
+    "Field": {
+      "description": "A form field placed on a document page.",
+      "fields": {
+        "type": {"type": "enum", "values": ["signature", "initials", "text", "date", "checkbox", "dropdown", "radiobutton"]},
+        "x": {"type": "number", "description": "X coordinate (pixels from left)."},
+        "y": {"type": "number", "description": "Y coordinate (pixels from top)."},
+        "width": {"type": "number", "description": "Field width in pixels."},
+        "height": {"type": "number", "description": "Field height in pixels."},
+        "page_number": {"type": "integer", "description": "Zero-indexed page number."},
+        "role_id": {"type": "string", "description": "Signing role assigned to fill this field."},
+        "required": {"type": "boolean"},
+        "label": {"type": "string", "description": "Field label text."}
+      }
+    },
+    "SigningRequest": {
+      "description": "A signature invitation sent to a recipient.",
+      "fields": {
+        "id": {"type": "string"},
+        "signer_email": {"type": "string", "format": "email"},
+        "status": {"type": "enum", "values": ["pending", "fulfilled", "declined", "expired"]},
+        "created": {"type": "datetime"},
+        "updated": {"type": "datetime"}
+      }
+    },
+    "Template": {
+      "description": "A reusable document template for e-signature workflows.",
+      "fields": {
+        "id": {"type": "string"},
+        "document_name": {"type": "string"},
+        "created": {"type": "datetime"},
+        "updated": {"type": "datetime"},
+        "roles": {"type": "array", "items": "Role"},
+        "fields": {"type": "array", "items": "Field"},
+        "page_count": {"type": "integer"}
+      }
+    }
+  }
+}

@@ -1,0 +1,386 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "SignNow Document Signing"
+  description: "Workflow capability for end-to-end electronic document signing using SignNow. Covers document preparation, template-based workflows, signature invitation, bulk signing, and envelope management for legal and business agreement workflows."
+  tags:
+  - E-Signature
+  - Document Signing
+  - Contract Management
+  - Workflow Automation
+  - Legal
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SIGNNOW_ACCESS_TOKEN: SIGNNOW_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: signnow
+      location: ./shared/signnow.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: document-signing-api
+      description: "Unified REST API for end-to-end electronic document signing workflows."
+      resources:
+        - path: /v1/documents
+          name: documents
+          description: "Document lifecycle management."
+          operations:
+            - method: GET
+              name: list-documents
+              description: "List all documents with their signing status."
+              call: "signnow.list-documents"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: upload-document
+              description: "Upload a PDF document to begin the signing workflow."
+              call: "signnow.upload-document"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/documents/{id}
+          name: document
+          description: "Single document operations."
+          operations:
+            - method: GET
+              name: get-document
+              description: "Retrieve document details, fields, and current signing status."
+              call: "signnow.get-document"
+              with:
+                document_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-document
+              description: "Delete a document from the system."
+              call: "signnow.delete-document"
+              with:
+                document_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/documents/{id}/download
+          name: document-download
+          description: "Document download."
+          operations:
+            - method: GET
+              name: download-document
+              description: "Download a document as a signed PDF."
+              call: "signnow.download-document"
+              with:
+                document_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/documents/{id}/invite
+          name: signature-invite
+          description: "Signature invitation management."
+          operations:
+            - method: POST
+              name: send-signature-invite
+              description: "Send signature invitations to one or more recipients."
+              call: "signnow.send-signature-invite"
+              with:
+                document_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/documents/{id}/cancel-invite
+          name: cancel-invite
+          description: "Cancel pending signature invites."
+          operations:
+            - method: POST
+              name: cancel-signature-invite
+              description: "Cancel all pending signature invitations for a document."
+              call: "signnow.cancel-signature-invite"
+              with:
+                document_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/templates
+          name: templates
+          description: "Document template management."
+          operations:
+            - method: GET
+              name: list-templates
+              description: "List all reusable document templates."
+              call: "signnow.list-templates"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: create-template
+              description: "Create a reusable template from an existing document."
+              call: "signnow.create-template"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/templates/{id}
+          name: template
+          description: "Single template operations."
+          operations:
+            - method: GET
+              name: get-template
+              description: "Retrieve a specific template with its fields and roles."
+              call: "signnow.get-template"
+              with:
+                template_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-template
+              description: "Delete a document template."
+              call: "signnow.delete-template"
+              with:
+                template_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/templates/{id}/bulk-invite
+          name: bulk-invite
+          description: "Bulk signature invitation."
+          operations:
+            - method: POST
+              name: send-bulk-invite
+              description: "Send signature invitations to multiple recipients via CSV."
+              call: "signnow.send-bulk-invite"
+              with:
+                template_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/envelopes
+          name: envelopes
+          description: "Document group envelope management."
+          operations:
+            - method: GET
+              name: list-envelopes
+              description: "List all document group envelopes."
+              call: "signnow.list-envelopes"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: create-envelope
+              description: "Create a document group envelope for coordinated multi-document signing."
+              call: "signnow.create-envelope"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/webhooks
+          name: webhooks
+          description: "Webhook event subscription management."
+          operations:
+            - method: GET
+              name: list-webhooks
+              description: "List all active webhook subscriptions."
+              call: "signnow.list-webhooks"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: create-webhook
+              description: "Register a webhook to receive signing event notifications."
+              call: "signnow.create-webhook"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/users/me
+          name: current-user
+          description: "Current user profile."
+          operations:
+            - method: GET
+              name: get-current-user
+              description: "Retrieve the current user's profile and subscription information."
+              call: "signnow.get-current-user"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: document-signing-mcp
+      transport: http
+      description: "MCP server for AI-assisted electronic document signing and workflow management."
+      tools:
+        - name: list-documents
+          description: "List all e-signature documents and their current signing status."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "signnow.list-documents"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: upload-document
+          description: "Upload a PDF document to begin an e-signature workflow."
+          hints:
+            readOnly: false
+          call: "signnow.upload-document"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-document
+          description: "Retrieve full details of a specific document including its fields and signing status."
+          hints:
+            readOnly: true
+          call: "signnow.get-document"
+          with:
+            document_id: "tools.document_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-document
+          description: "Permanently delete a document from SignNow."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "signnow.delete-document"
+          with:
+            document_id: "tools.document_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: download-document
+          description: "Download a completed signed document as a PDF."
+          hints:
+            readOnly: true
+          call: "signnow.download-document"
+          with:
+            document_id: "tools.document_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-signature-invite
+          description: "Send e-signature invitations to one or more recipients for a document."
+          hints:
+            readOnly: false
+          call: "signnow.send-signature-invite"
+          with:
+            document_id: "tools.document_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: cancel-signature-invite
+          description: "Cancel all pending signature invitations for a document."
+          hints:
+            readOnly: false
+            destructive: false
+          call: "signnow.cancel-signature-invite"
+          with:
+            document_id: "tools.document_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-templates
+          description: "List all available document templates for e-signature workflows."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "signnow.list-templates"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: get-template
+          description: "Retrieve a specific document template with its signing fields and roles."
+          hints:
+            readOnly: true
+          call: "signnow.get-template"
+          with:
+            template_id: "tools.template_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-template
+          description: "Create a reusable e-signature template from an existing document."
+          hints:
+            readOnly: false
+          call: "signnow.create-template"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-template
+          description: "Delete a document template from SignNow."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "signnow.delete-template"
+          with:
+            template_id: "tools.template_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-bulk-invite
+          description: "Send e-signature invitations to multiple recipients using a CSV file and template."
+          hints:
+            readOnly: false
+          call: "signnow.send-bulk-invite"
+          with:
+            template_id: "tools.template_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-envelopes
+          description: "List all document group envelopes for coordinated multi-document signing."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "signnow.list-envelopes"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: create-envelope
+          description: "Create a document group envelope to coordinate signing across multiple documents."
+          hints:
+            readOnly: false
+          call: "signnow.create-envelope"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-envelope
+          description: "Retrieve details of a specific document group envelope."
+          hints:
+            readOnly: true
+          call: "signnow.get-envelope"
+          with:
+            group_id: "tools.group_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-webhooks
+          description: "List all active webhook event subscriptions."
+          hints:
+            readOnly: true
+          call: "signnow.list-webhooks"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: create-webhook
+          description: "Register a webhook to receive notifications when document signing events occur."
+          hints:
+            readOnly: false
+          call: "signnow.create-webhook"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-current-user
+          description: "Retrieve current user profile, subscription details, and usage information."
+          hints:
+            readOnly: true
+          call: "signnow.get-current-user"
+          outputParameters:
+            - type: object
+              mapping: "$."

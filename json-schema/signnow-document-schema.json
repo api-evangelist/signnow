@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/signnow/main/json-schema/signnow-document-schema.json",
+  "title": "SignNow Document",
+  "description": "Schema for a SignNow document resource, including signing status, fields, and invitation details.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique document identifier."
+    },
+    "document_name": {
+      "type": "string",
+      "description": "Name of the document."
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp."
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 last update timestamp."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "ID of the document owner."
+    },
+    "origin_document_id": {
+      "type": "string",
+      "description": "Source template ID if created from a template."
+    },
+    "page_count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of pages in the document."
+    },
+    "fieldinvite_status": {
+      "type": "string",
+      "enum": ["pending", "fulfilled", "declined", "expired"],
+      "description": "Overall signature invite status."
+    },
+    "signing_session_caching": {
+      "type": "boolean",
+      "description": "Whether signing session caching is enabled."
+    },
+    "roles": {
+      "type": "array",
+      "description": "Signing roles defined for this document.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "unique_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "Role name (e.g., Signer, Approver)."
+          },
+          "signing_order": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "description": "Form fields embedded in the document.",
+      "items": {
+        "$ref": "#/$defs/Field"
+      }
+    },
+    "requests": {
+      "type": "array",
+      "description": "Pending signature invitation requests.",
+      "items": {
+        "$ref": "#/$defs/SigningRequest"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Organizational tags applied to this document."
+    }
+  },
+  "required": ["id", "document_name"],
+  "$defs": {
+    "Field": {
+      "type": "object",
+      "description": "A form field within the document.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["signature", "initials", "text", "date", "checkbox", "dropdown", "radiobutton"],
+          "description": "Field type."
+        },
+        "x": {
+          "type": "number",
+          "description": "X coordinate position on page."
+        },
+        "y": {
+          "type": "number",
+          "description": "Y coordinate position on page."
+        },
+        "width": {
+          "type": "number",
+          "minimum": 0
+        },
+        "height": {
+          "type": "number",
+          "minimum": 0
+        },
+        "page_number": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Zero-indexed page number."
+        },
+        "role_id": {
+          "type": "string",
+          "description": "Signing role assigned to fill this field."
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable field label."
+        }
+      },
+      "required": ["type", "page_number"]
+    },
+    "SigningRequest": {
+      "type": "object",
+      "description": "A pending or completed signature request.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "signer_email": {
+          "type": "string",
+          "format": "email"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "fulfilled", "declined", "expired"]
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "signer_email", "status"]
+    }
+  }
+}

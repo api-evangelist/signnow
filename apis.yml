@@ -58,6 +58,32 @@ common:
   url: https://www.signnow.com/privacy-policy
 - type: Security
   url: https://www.signnow.com/security
+- type: Integrations
+  url: https://www.signnow.com/integrations
+integrations:
+  - name: Salesforce
+  - name: Google Workspace
+  - name: Netsuite
+  - name: Autodesk
+  - name: Gmail
+  - name: Excel
+  - name: Browser
+  - name: CRM System
+  - name: Accounting Software
+  - name: Employee Intranet Service
+  - name: Internal Communications Software
+  - name: ECM Software
+  - name: ERP Systems
+  - name: Marketing Automation Software
+  - name: Cloud Content Collaboration Services
+  - name: OCR Software
+  - name: HR Management Suites
+  - name: Relational Databases
+  - name: iPaaS
+  - name: Payroll System
+  - name: Benefits Administration Service
+  - name: Project Management Software
+  - name: Task Management Service
 maintainers:
 - FN: API Evangelist
   url: https://apievangelist.com

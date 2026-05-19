@@ -1,0 +1,245 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SignNow REST API — Documents
+  description: 'SignNow REST API — Documents. 5 operations. Lead operation: List Documents. Self-contained Naftiko capability
+    covering one Signnow business surface.'
+  tags:
+  - Signnow
+  - Documents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SIGNNOW_API_KEY: SIGNNOW_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: signnow-documents
+    baseUri: https://api.signnow.com
+    description: SignNow REST API — Documents business capability. Self-contained, no shared references.
+    resources:
+    - name: document
+      path: /document
+      operations:
+      - name: listdocuments
+        method: GET
+        description: List Documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of documents per page
+        - name: page
+          in: query
+          type: integer
+          description: Page number
+      - name: uploaddocument
+        method: POST
+        description: Upload Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: document-document_id
+      path: /document/{document_id}
+      operations:
+      - name: getdocument
+        method: GET
+        description: Get Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: document_id
+          in: path
+          type: string
+          description: Unique document identifier
+          required: true
+      - name: deletedocument
+        method: DELETE
+        description: Delete Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: document_id
+          in: path
+          type: string
+          description: Unique document identifier
+          required: true
+    - name: document-document_id-download
+      path: /document/{document_id}/download
+      operations:
+      - name: downloaddocument
+        method: GET
+        description: Download Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: document_id
+          in: path
+          type: string
+          description: Unique document identifier
+          required: true
+        - name: type
+          in: query
+          type: string
+          description: Download type
+    authentication:
+      type: bearer
+      token: '{{env.SIGNNOW_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: signnow-documents-rest
+    port: 8080
+    description: REST adapter for SignNow REST API — Documents. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/document
+      name: document
+      description: REST surface for document.
+      operations:
+      - method: GET
+        name: listdocuments
+        description: List Documents
+        call: signnow-documents.listdocuments
+        with:
+          per_page: rest.per_page
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: uploaddocument
+        description: Upload Document
+        call: signnow-documents.uploaddocument
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/document/{document-id}
+      name: document-document-id
+      description: REST surface for document-document_id.
+      operations:
+      - method: GET
+        name: getdocument
+        description: Get Document
+        call: signnow-documents.getdocument
+        with:
+          document_id: rest.document_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedocument
+        description: Delete Document
+        call: signnow-documents.deletedocument
+        with:
+          document_id: rest.document_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/document/{document-id}/download
+      name: document-document-id-download
+      description: REST surface for document-document_id-download.
+      operations:
+      - method: GET
+        name: downloaddocument
+        description: Download Document
+        call: signnow-documents.downloaddocument
+        with:
+          document_id: rest.document_id
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: signnow-documents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SignNow REST API — Documents. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-documents
+      description: List Documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: signnow-documents.listdocuments
+      with:
+        per_page: tools.per_page
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-document
+      description: Upload Document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: signnow-documents.uploaddocument
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-document
+      description: Get Document
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: signnow-documents.getdocument
+      with:
+        document_id: tools.document_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-document
+      description: Delete Document
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: signnow-documents.deletedocument
+      with:
+        document_id: tools.document_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-document
+      description: Download Document
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: signnow-documents.downloaddocument
+      with:
+        document_id: tools.document_id
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.

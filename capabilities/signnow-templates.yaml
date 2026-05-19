@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SignNow REST API — Templates
+  description: 'SignNow REST API — Templates. 4 operations. Lead operation: List Templates. Self-contained Naftiko capability
+    covering one Signnow business surface.'
+  tags:
+  - Signnow
+  - Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SIGNNOW_API_KEY: SIGNNOW_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: signnow-templates
+    baseUri: https://api.signnow.com
+    description: SignNow REST API — Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: template
+      path: /template
+      operations:
+      - name: listtemplates
+        method: GET
+        description: List Templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createtemplate
+        method: POST
+        description: Create Template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: template-template_id
+      path: /template/{template_id}
+      operations:
+      - name: gettemplate
+        method: GET
+        description: Get Template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: template_id
+          in: path
+          type: string
+          description: Unique template identifier
+          required: true
+      - name: deletetemplate
+        method: DELETE
+        description: Delete Template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: template_id
+          in: path
+          type: string
+          description: Unique template identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SIGNNOW_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: signnow-templates-rest
+    port: 8080
+    description: REST adapter for SignNow REST API — Templates. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/template
+      name: template
+      description: REST surface for template.
+      operations:
+      - method: GET
+        name: listtemplates
+        description: List Templates
+        call: signnow-templates.listtemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtemplate
+        description: Create Template
+        call: signnow-templates.createtemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/template/{template-id}
+      name: template-template-id
+      description: REST surface for template-template_id.
+      operations:
+      - method: GET
+        name: gettemplate
+        description: Get Template
+        call: signnow-templates.gettemplate
+        with:
+          template_id: rest.template_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetemplate
+        description: Delete Template
+        call: signnow-templates.deletetemplate
+        with:
+          template_id: rest.template_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: signnow-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SignNow REST API — Templates. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-templates
+      description: List Templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: signnow-templates.listtemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-template
+      description: Create Template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: signnow-templates.createtemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-template
+      description: Get Template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: signnow-templates.gettemplate
+      with:
+        template_id: tools.template_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-template
+      description: Delete Template
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: signnow-templates.deletetemplate
+      with:
+        template_id: tools.template_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,178 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SignNow REST API — Signing
+  description: 'SignNow REST API — Signing. 3 operations. Lead operation: Cancel Signature Invite. Self-contained Naftiko
+    capability covering one Signnow business surface.'
+  tags:
+  - Signnow
+  - Signing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SIGNNOW_API_KEY: SIGNNOW_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: signnow-signing
+    baseUri: https://api.signnow.com
+    description: SignNow REST API — Signing business capability. Self-contained, no shared references.
+    resources:
+    - name: document-document_id-fieldinvitecancel
+      path: /document/{document_id}/fieldinvitecancel
+      operations:
+      - name: cancelsignatureinvite
+        method: PUT
+        description: Cancel Signature Invite
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: document_id
+          in: path
+          type: string
+          description: Unique document identifier
+          required: true
+    - name: document-document_id-invite
+      path: /document/{document_id}/invite
+      operations:
+      - name: sendsignatureinvite
+        method: POST
+        description: Send Signature Invite
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: document_id
+          in: path
+          type: string
+          description: Unique document identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: template-template_id-bulkinvite
+      path: /template/{template_id}/bulkinvite
+      operations:
+      - name: sendbulkinvite
+        method: POST
+        description: Send Bulk Invite
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: template_id
+          in: path
+          type: string
+          description: Unique template identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SIGNNOW_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: signnow-signing-rest
+    port: 8080
+    description: REST adapter for SignNow REST API — Signing. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/document/{document-id}/fieldinvitecancel
+      name: document-document-id-fieldinvitecancel
+      description: REST surface for document-document_id-fieldinvitecancel.
+      operations:
+      - method: PUT
+        name: cancelsignatureinvite
+        description: Cancel Signature Invite
+        call: signnow-signing.cancelsignatureinvite
+        with:
+          document_id: rest.document_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/document/{document-id}/invite
+      name: document-document-id-invite
+      description: REST surface for document-document_id-invite.
+      operations:
+      - method: POST
+        name: sendsignatureinvite
+        description: Send Signature Invite
+        call: signnow-signing.sendsignatureinvite
+        with:
+          document_id: rest.document_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/template/{template-id}/bulkinvite
+      name: template-template-id-bulkinvite
+      description: REST surface for template-template_id-bulkinvite.
+      operations:
+      - method: POST
+        name: sendbulkinvite
+        description: Send Bulk Invite
+        call: signnow-signing.sendbulkinvite
+        with:
+          template_id: rest.template_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: signnow-signing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SignNow REST API — Signing. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: cancel-signature-invite
+      description: Cancel Signature Invite
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: signnow-signing.cancelsignatureinvite
+      with:
+        document_id: tools.document_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-signature-invite
+      description: Send Signature Invite
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: signnow-signing.sendsignatureinvite
+      with:
+        document_id: tools.document_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-bulk-invite
+      description: Send Bulk Invite
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: signnow-signing.sendbulkinvite
+      with:
+        template_id: tools.template_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

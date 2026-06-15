@@ -1,81 +1,66 @@
-# SignNow
+# SignNow (signnow)
 
 SignNow is an e-signature platform by airSlate that enables businesses to send, sign, and manage legally binding documents electronically. It provides a REST API for embedding e-signature workflows, document creation, template management, and bulk signing operations into any application.
 
-- **Website:** https://www.signnow.com
-- **Developer Portal:** https://www.signnow.com/developers
-- **Documentation:** https://docs.signnow.com/docs/signnow/welcome
-- **API Reference:** https://docs.signnow.com/docs/signnow/reference
-- **GitHub:** https://github.com/signnow
-- **Pricing:** https://www.signnow.com/pricing
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/apis.yml)
 
-## API
+## Tags
 
-The SignNow REST API is available at:
-- **Production:** https://api.signnow.com
-- **Sandbox:** https://api-eval.signnow.com
+- E-Signature
+- Document Management
+- Electronic Signature
+- Workflow Automation
 
-Authentication uses OAuth 2.0 Bearer tokens obtained via `POST /oauth2/token`.
+## Timestamps
 
-## OpenAPI Specs
+- **Created:** 2026-05-02
+- **Modified:** 2026-05-19
 
-| Name | Description |
-|---|---|
-| [SignNow REST API](openapi/signnow-openapi.yml) | Full REST API covering documents, templates, signing, users, webhooks, and envelopes |
+## APIs
 
-## Capabilities
+### SignNow REST API
 
-### Shared Definitions
+The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
 
-| File | Description |
-|---|---|
-| [signnow](capabilities/shared/signnow.yaml) | SignNow REST API consumed definition |
+- **Human URL:** [https://docs.signnow.com/docs/signnow/welcome](https://docs.signnow.com/docs/signnow/welcome)
+- **Base URL:** `https://api.signnow.com`
 
-### Workflow Capabilities
+#### Tags
 
-| Capability | Description |
-|---|---|
-| [Document Signing](capabilities/document-signing.yaml) | End-to-end e-signature workflow: upload, invite, sign, download |
+- E-Signature
+- Documents
+- Templates
+- Signing
+- OAuth2
 
-## Rules
+#### Properties
 
-| Name | Description |
-|---|---|
-| [SignNow Spectral Rules](rules/signnow-rules.yml) | Spectral ruleset enforcing SignNow API conventions |
+- [Documentation](https://docs.signnow.com/docs/signnow/welcome)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/openapi/signnow-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Authentication](https://docs.signnow.com/docs/signnow/get-started)
+- [S D Ks](https://docs.signnow.com/docs/signnow/sdk)
+- [GitHub Organization](https://github.com/signnow)
+- [Postman Collection](https://github.com/signnow/postman-collection) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/rules/signnow-rules.yml)
+- [Postman Collection](collections/signnow.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/signnow.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## JSON Schema
+## Common Properties
 
-| Name | Description |
-|---|---|
-| [Document Schema](json-schema/signnow-document-schema.json) | Schema for the SignNow Document resource |
-
-## JSON Structure
-
-| Name | Description |
-|---|---|
-| [Document Structure](json-structure/signnow-document-structure.json) | Structural documentation for SignNow Document and related resources |
-
-## JSON-LD
-
-| Name | Description |
-|---|---|
-| [SignNow Context](json-ld/signnow-context.jsonld) | JSON-LD context mapping SignNow terms to schema.org |
-
-## Examples
-
-| Name | Description |
-|---|---|
-| [Upload Document](examples/signnow-upload-document-example.json) | Example: uploading a PDF document |
-| [Send Signature Invite](examples/signnow-send-signature-invite-example.json) | Example: sending signature invitations to recipients |
-
-## Vocabulary
-
-| Name | Description |
-|---|---|
-| [SignNow Vocabulary](vocabulary/signnow-vocabulary.yml) | Domain terms for the e-signature platform |
+- [LinkedIn](https://www.linkedin.com/company/signnow-esignature)
+- [GitHub Organization](https://github.com/signnow)
+- [Developer Portal](https://www.signnow.com/developers)
+- [Documentation](https://docs.signnow.com)
+- [Release Notes](https://www.signnow.com/release-notes/signnow-api)
+- [Pricing](https://www.signnow.com/pricing)
+- [Terms of Service](https://www.signnow.com/terms-of-service)
+- [Privacy Policy](https://www.signnow.com/privacy-policy)
+- [Security](https://www.signnow.com/security)
+- [Integrations](https://www.signnow.com/integrations)
+- [M C P Server](https://github.com/signnow/sn-api-helper-mcp)
 
 ## Maintainers
 
-**API Evangelist**
-- URL: https://apievangelist.com
-- Email: info@apievangelist.com
+**FN:** API Evangelist
+**Email:** info@apievangelist.com
+**URL:** https://apievangelist.com

@@ -1,0 +1,3075 @@
+{
+  "item": [
+    {
+      "id": "4c489d83-3ba8-48a6-8210-d16161c0ed85",
+      "name": "Authentication",
+      "description": {
+        "content": "OAuth2 token management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "828bb854-d431-497a-a1a5-f2f191a30141",
+          "name": "Create OAuth Token",
+          "request": {
+            "name": "Create OAuth Token",
+            "description": {
+              "content": "Generate an OAuth 2.0 access token using client credentials or password grant type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) OAuth grant type"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Application client ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Application client secret"
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "User email (for password grant)"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "User password (for password grant)"
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "Authorization code (for authorization_code grant)"
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_token",
+                  "value": "<string>",
+                  "description": "Refresh token (for refresh_token grant)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e30f10ff-95b6-432b-8d68-8f471178b473",
+              "name": "Access token generated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application client ID",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application client secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "User email (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "User password (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Authorization code (for authorization_code grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token (for refresh_token grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"bearer\",\n  \"expires_in\": 3567,\n  \"refresh_token\": \"string\",\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91ab5878-f8a6-476c-919b-bb443259aea0",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application client ID",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application client secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "User email (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "User password (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Authorization code (for authorization_code grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token (for refresh_token grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 3766,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5311,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2c7bca10-d609-46a4-abdc-3cbb60a7af12",
+      "name": "Documents",
+      "description": {
+        "content": "Upload, manage, and retrieve documents",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99e3aca0-b914-4f77-857a-22d905ccbe72",
+          "name": "List Documents",
+          "request": {
+            "name": "List Documents",
+            "description": {
+              "content": "Retrieve a list of all documents for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of documents per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f8b1047-62be-4b01-b93e-c57e39e71754",
+              "name": "List of documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"document_name\": \"string\",\n    \"created\": \"1971-10-12T15:47:16.575Z\",\n    \"updated\": \"2002-05-23T18:49:25.502Z\",\n    \"origin_document_id\": \"string\",\n    \"user_id\": \"string\",\n    \"roles\": [\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 8255\n      },\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 9953\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"text\",\n        \"x\": 3075.394877873279,\n        \"y\": 3068.448814726652,\n        \"width\": 7004.085984959042,\n        \"height\": 811.5624330701421,\n        \"page_number\": 3067,\n        \"role_id\": \"string\",\n        \"required\": true,\n        \"label\": \"string\"\n      },\n      {\n        \"type\": \"dropdown\",\n        \"x\": 4079.4386399575487,\n        \"y\": 819.0438899717278,\n        \"width\": 7791.584320479843,\n        \"height\": 2305.0407956705976,\n        \"page_number\": 603,\n        \"role_id\": \"string\",\n        \"required\": false,\n        \"label\": \"string\"\n      }\n    ],\n    \"requests\": [\n      {\n        \"id\": \"string\",\n        \"signer_email\": \"s6rHum08XxxHfK@NXf.fuw\",\n        \"status\": \"fulfilled\",\n        \"created\": \"2011-03-31T11:07:00.302Z\",\n        \"updated\": \"1976-10-11T03:23:24.557Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"signer_email\": \"X2dIgLW2vzwng-D@cjkUGjDoqRKPYsNmQEXe.qyl\",\n        \"status\": \"expired\",\n        \"created\": \"2002-05-23T17:26:03.932Z\",\n        \"updated\": \"2005-11-25T22:06:28.183Z\"\n      }\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"page_count\": 3474,\n    \"signing_session_caching\": true,\n    \"fieldinvite_status\": \"declined\"\n  },\n  {\n    \"id\": \"string\",\n    \"document_name\": \"string\",\n    \"created\": \"1991-01-31T13:37:09.766Z\",\n    \"updated\": \"1973-05-06T21:51:16.877Z\",\n    \"origin_document_id\": \"string\",\n    \"user_id\": \"string\",\n    \"roles\": [\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 202\n      },\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 4496\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"initials\",\n        \"x\": 5433.398104438407,\n        \"y\": 3908.453656894049,\n        \"width\": 100.67326042571656,\n        \"height\": 3692.731334939261,\n        \"page_number\": 9928,\n        \"role_id\": \"string\",\n        \"required\": true,\n        \"label\": \"string\"\n      },\n      {\n        \"type\": \"text\",\n        \"x\": 5862.548080559218,\n        \"y\": 7284.490958749601,\n        \"width\": 6839.859479901933,\n        \"height\": 8046.921992695919,\n        \"page_number\": 3554,\n        \"role_id\": \"string\",\n        \"required\": true,\n        \"label\": \"string\"\n      }\n    ],\n    \"requests\": [\n      {\n        \"id\": \"string\",\n        \"signer_email\": \"DKh@LEzgadhDegu.uk\",\n        \"status\": \"fulfilled\",\n        \"created\": \"1991-07-29T06:37:42.688Z\",\n        \"updated\": \"2000-08-10T02:04:12.549Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"signer_email\": \"chFzfiQ9h@ZTQvsZhXEMW.wb\",\n        \"status\": \"fulfilled\",\n        \"created\": \"2002-07-15T16:52:02.075Z\",\n        \"updated\": \"2016-11-26T02:07:05.663Z\"\n      }\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"page_count\": 1327,\n    \"signing_session_caching\": true,\n    \"fieldinvite_status\": \"declined\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66547dc0-98b8-4adb-a5e0-ea9d31c0749c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 3766,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5311,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e09b6e1-ed58-40de-b4bd-13f410484c2e",
+          "name": "Upload Document",
+          "request": {
+            "name": "Upload Document",
+            "description": {
+              "content": "Upload a PDF document to SignNow for e-signature processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) PDF file to upload"
+                },
+                {
+                  "key": "Tags",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Comma-separated tags"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "183327cf-c32e-4f31-80c2-41a962100267",
+              "name": "Document uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) PDF file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Comma-separated tags",
+                        "type": "text/plain"
+                      },
+                      "key": "Tags",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6387faaa-5109-4ba3-ad9e-af2cc09067c5",
+              "name": "Invalid file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) PDF file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Comma-separated tags",
+                        "type": "text/plain"
+                      },
+                      "key": "Tags",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 3766,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5311,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb5d2866-3e1c-4cec-b076-342e2afc7d07",
+          "name": "Get Document",
+          "request": {
+            "name": "Get Document",
+            "description": {
+              "content": "Retrieve document details including fields, signers, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                ":document_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_id",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "983232e3-96b3-47ac-bff6-21c8fb5c9c42",
+              "name": "Document details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"document_name\": \"string\",\n  \"created\": \"1946-10-23T18:49:02.745Z\",\n  \"updated\": \"1967-03-15T23:30:46.120Z\",\n  \"origin_document_id\": \"string\",\n  \"user_id\": \"string\",\n  \"roles\": [\n    {\n      \"unique_id\": \"string\",\n      \"name\": \"string\",\n      \"signing_order\": 7204\n    },\n    {\n      \"unique_id\": \"string\",\n      \"name\": \"string\",\n      \"signing_order\": 8893\n    }\n  ],\n  \"fields\": [\n    {\n      \"type\": \"checkbox\",\n      \"x\": 6875.830340165251,\n      \"y\": 5461.463793504114,\n      \"width\": 2441.651211754838,\n      \"height\": 4759.897727365792,\n      \"page_number\": 7823,\n      \"role_id\": \"string\",\n      \"required\": false,\n      \"label\": \"string\"\n    },\n    {\n      \"type\": \"date\",\n      \"x\": 8712.521908265773,\n      \"y\": 4796.083066887102,\n      \"width\": 2418.5408778446417,\n      \"height\": 1820.48589220981,\n      \"page_number\": 8678,\n      \"role_id\": \"string\",\n      \"required\": true,\n      \"label\": \"string\"\n    }\n  ],\n  \"requests\": [\n    {\n      \"id\": \"string\",\n      \"signer_email\": \"08wsZNxoeNNw@qpUyal.bm\",\n      \"status\": \"expired\",\n      \"created\": \"2014-10-27T13:17:25.903Z\",\n      \"updated\": \"1992-04-09T21:44:20.707Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"signer_email\": \"zcLSXL8LC21@WTkUvYGWMJywpxoaCcxZLgTiNUWgL.pzb\",\n      \"status\": \"declined\",\n      \"created\": \"1975-11-12T09:02:21.538Z\",\n      \"updated\": \"1953-04-27T02:28:41.632Z\"\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"page_count\": 1560,\n  \"signing_session_caching\": false,\n  \"fieldinvite_status\": \"pending\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bbf9166-c69b-4940-81c4-ffeae4b77103",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 3766,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5311,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac5d5a05-2bbf-47eb-affa-b977754c6bfa",
+          "name": "Delete Document",
+          "request": {
+            "name": "Delete Document",
+            "description": {
+              "content": "Permanently delete a document from SignNow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                ":document_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_id",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41c2a0b9-03d5-450c-9182-c1241f4d2005",
+              "name": "Document deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4224e193-6949-487b-8235-ad0395fca3df",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 3766,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5311,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cec1e2c6-be32-4912-a3e6-f91effcd5cac",
+          "name": "Download Document",
+          "request": {
+            "name": "Download Document",
+            "description": {
+              "content": "Download a document as a PDF file, including signatures and completed fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                ":document_id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Download type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_id",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97d672b0-ecab-48ce-9d61-815c53a6130d",
+              "name": "Document PDF",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "abccea87-ed12-4f98-8816-2c6de0d082aa",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e6824776-f310-4688-a92b-df65508faaab",
+      "name": "Templates",
+      "description": {
+        "content": "Create and manage document templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "337675de-2588-4608-8f84-b2472d4c024f",
+          "name": "List Templates",
+          "request": {
+            "name": "List Templates",
+            "description": {
+              "content": "Retrieve all document templates for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03771e82-18a7-4d0c-994b-1fd3e259cebc",
+              "name": "List of templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"document_name\": \"string\",\n    \"created\": \"1956-08-29T05:38:17.372Z\",\n    \"updated\": \"1949-05-18T15:49:10.752Z\",\n    \"roles\": [\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 6521\n      },\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 5947\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"checkbox\",\n        \"x\": 4893.244573414895,\n        \"y\": 2987.7488975128585,\n        \"width\": 544.0522391397996,\n        \"height\": 4818.113721919592,\n        \"page_number\": 2717,\n        \"role_id\": \"string\",\n        \"required\": false,\n        \"label\": \"string\"\n      },\n      {\n        \"type\": \"radiobutton\",\n        \"x\": 8708.59172994189,\n        \"y\": 4904.676742581091,\n        \"width\": 7766.092144469915,\n        \"height\": 7173.018002535846,\n        \"page_number\": 1722,\n        \"role_id\": \"string\",\n        \"required\": false,\n        \"label\": \"string\"\n      }\n    ],\n    \"page_count\": 4498\n  },\n  {\n    \"id\": \"string\",\n    \"document_name\": \"string\",\n    \"created\": \"2022-10-28T21:16:44.930Z\",\n    \"updated\": \"1999-02-06T16:47:41.097Z\",\n    \"roles\": [\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 6979\n      },\n      {\n        \"unique_id\": \"string\",\n        \"name\": \"string\",\n        \"signing_order\": 7055\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"signature\",\n        \"x\": 4405.809432653706,\n        \"y\": 1203.3994879597165,\n        \"width\": 9182.502112390128,\n        \"height\": 2397.1352689482205,\n        \"page_number\": 8898,\n        \"role_id\": \"string\",\n        \"required\": true,\n        \"label\": \"string\"\n      },\n      {\n        \"type\": \"checkbox\",\n        \"x\": 8163.6197490004415,\n        \"y\": 4062.0655745493773,\n        \"width\": 2519.125107917055,\n        \"height\": 8442.798077743211,\n        \"page_number\": 8065,\n        \"role_id\": \"string\",\n        \"required\": false,\n        \"label\": \"string\"\n      }\n    ],\n    \"page_count\": 2452\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91a30111-0078-4ebc-ac31-014e521611d6",
+          "name": "Create Template",
+          "request": {
+            "name": "Create Template",
+            "description": {
+              "content": "Create a new reusable document template from an uploaded document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_id\": \"<string>\",\n  \"document_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca878e25-7793-4618-988c-5fafcb83cb7d",
+              "name": "Template created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"<string>\",\n  \"document_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acd6a180-7c91-4009-bc9c-b2ac7cd8291e",
+          "name": "Get Template",
+          "request": {
+            "name": "Get Template",
+            "description": {
+              "content": "Retrieve details of a specific document template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) Unique template identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55fa1ba6-b704-4226-84a1-3e3baa81f1cc",
+              "name": "Template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Unique template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"document_name\": \"string\",\n  \"created\": \"1966-08-20T02:01:11.621Z\",\n  \"updated\": \"2003-02-07T16:53:42.550Z\",\n  \"roles\": [\n    {\n      \"unique_id\": \"string\",\n      \"name\": \"string\",\n      \"signing_order\": 2691\n    },\n    {\n      \"unique_id\": \"string\",\n      \"name\": \"string\",\n      \"signing_order\": 8880\n    }\n  ],\n  \"fields\": [\n    {\n      \"type\": \"checkbox\",\n      \"x\": 1394.6049851522368,\n      \"y\": 8696.162973824848,\n      \"width\": 9360.590201554001,\n      \"height\": 6127.51802857186,\n      \"page_number\": 4837,\n      \"role_id\": \"string\",\n      \"required\": false,\n      \"label\": \"string\"\n    },\n    {\n      \"type\": \"date\",\n      \"x\": 3297.090338804859,\n      \"y\": 7815.327267047346,\n      \"width\": 1880.9522790911892,\n      \"height\": 9549.4196764885,\n      \"page_number\": 1227,\n      \"role_id\": \"string\",\n      \"required\": false,\n      \"label\": \"string\"\n    }\n  ],\n  \"page_count\": 8751\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19d7b34c-cef0-42d1-bc94-ddaa64e7715e",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Unique template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e919551e-18c5-4fd0-8884-f0415bf9f399",
+          "name": "Delete Template",
+          "request": {
+            "name": "Delete Template",
+            "description": {
+              "content": "Delete a document template from SignNow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) Unique template identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8de0ed86-8137-4f07-bf2e-16174c0abf15",
+              "name": "Template deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Unique template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1134a88f-656d-476a-a6b9-f2590852db4a",
+      "name": "Signing",
+      "description": {
+        "content": "Send signature invitations and manage signers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d5c5d14-032a-475b-b4df-907ae6537e05",
+          "name": "Send Signature Invite",
+          "request": {
+            "name": "Send Signature Invite",
+            "description": {
+              "content": "Send a signature invitation to one or more recipients for a document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                ":document_id",
+                "invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_id",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe6ff239-44ce-40c8-96a3-b019b46a8011",
+              "name": "Invitations sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b71b56ed-60b2-4aea-a9d2-e41dc19ab1b9",
+              "name": "Invalid invite request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 5080,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 7075,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "745f4ae9-fe99-459f-a063-79a12941e069",
+          "name": "Cancel Signature Invite",
+          "request": {
+            "name": "Cancel Signature Invite",
+            "description": {
+              "content": "Cancel all pending signature invitations for a document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                ":document_id",
+                "fieldinvitecancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_id",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1028993f-c7be-46f2-9f36-7cc05e9a17c7",
+              "name": "Invite cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "fieldinvitecancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c4ab40d-b581-45cb-8c8b-6c4653e5c649",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "fieldinvitecancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31df2239-4dd3-4afe-8579-079a6546f2e2",
+          "name": "Send Bulk Invite",
+          "request": {
+            "name": "Send Bulk Invite",
+            "description": {
+              "content": "Send signature invitations to multiple recipients using a CSV file with template-based documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                ":template_id",
+                "bulkinvite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) Unique template identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) CSV file with recipient data"
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Email subject line"
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Email message body"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c263094-aff9-43d3-b6cf-0043fbcb4db6",
+              "name": "Bulk invites sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id",
+                    "bulkinvite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Unique template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with recipient data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Email subject line",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Email message body",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b54e86b3-c677-47ff-9b51-435ad4ed9b18",
+      "name": "Users",
+      "description": {
+        "content": "User account management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e642abce-ea90-46ca-b5e8-43115cd0fcfc",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {
+              "content": "Create a new SignNow user account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b945e99-72c4-4075-b6ab-d3d457bd1fae",
+              "name": "User created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "714a805e-5672-400e-b552-50067776fe27",
+          "name": "Get Current User",
+          "request": {
+            "name": "Get Current User",
+            "description": {
+              "content": "Retrieve the profile information for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5137ccba-67a7-483a-b88a-513276887f5d",
+              "name": "User profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"6Wertcc6@oOACMJjxtbHvGHpQOcvQ.sw\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"active\": true,\n  \"organization\": \"string\",\n  \"created\": \"1958-09-08T08:04:57.954Z\",\n  \"credits\": 5662,\n  \"subscription\": {\n    \"api_requests_limit\": 9350,\n    \"api_requests_used\": 1075\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2afea518-a267-4a05-87ba-a4e691ace8e1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "814f73b8-146b-47e9-96c9-d7cb4083e688",
+          "name": "Get User",
+          "request": {
+            "name": "Get User",
+            "description": {
+              "content": "Retrieve profile information for a specific user by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                ":user_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) Unique user identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c13c7144-3a06-4007-b8ad-a0029e721b1c",
+              "name": "User profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":user_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) Unique user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"6Wertcc6@oOACMJjxtbHvGHpQOcvQ.sw\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"active\": true,\n  \"organization\": \"string\",\n  \"created\": \"1958-09-08T08:04:57.954Z\",\n  \"credits\": 5662,\n  \"subscription\": {\n    \"api_requests_limit\": 9350,\n    \"api_requests_used\": 1075\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d593d08b-76bb-494b-b3d9-b86c4a10fbb6",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":user_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) Unique user identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1992eb15-07d2-4443-948c-b16768631c83",
+      "name": "Webhooks",
+      "description": {
+        "content": "Event subscription and notification management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e4b762c-96ca-4ef8-9217-957ab4576fa2",
+          "name": "List Webhooks",
+          "request": {
+            "name": "List Webhooks",
+            "description": {
+              "content": "Retrieve all registered webhook event subscriptions for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "798bf04a-5249-4a56-a0fb-254288dabc16",
+              "name": "List of webhook subscriptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"event\": \"invite.decline\",\n    \"entity_id\": \"string\",\n    \"action\": \"string\",\n    \"attributes\": {\n      \"key_0\": 1657\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"event\": \"document.delete\",\n    \"entity_id\": \"string\",\n    \"action\": \"string\",\n    \"attributes\": {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": 6759,\n      \"key_3\": 5511.8449020221415\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "859758b6-073a-4213-b49c-e572e0f14d89",
+          "name": "Create Webhook",
+          "request": {
+            "name": "Create Webhook",
+            "description": {
+              "content": "Subscribe to a SignNow event by registering a webhook endpoint URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"<string>\",\n  \"action\": \"<string>\",\n  \"entity_id\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b197d40-f9a7-4266-8fc8-8862701d66dc",
+              "name": "Webhook created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"event\": \"<string>\",\n  \"action\": \"<string>\",\n  \"entity_id\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5165.632096468476,\n    \"key_2\": 5791\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a6eb897-32cc-4959-83e0-8456d37ba29b",
+          "name": "Delete Webhook",
+          "request": {
+            "name": "Delete Webhook",
+            "description": {
+              "content": "Remove a webhook event subscription by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events",
+                ":webhook_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhook_id",
+                  "description": "(Required) Unique webhook identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f39506c-baff-4b06-b8c8-f2d7d48cc177",
+              "name": "Webhook deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":webhook_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhook_id",
+                      "description": "(Required) Unique webhook identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9b996da1-918a-4f71-bc0e-78f80ffc549b",
+      "name": "Envelopes",
+      "description": {
+        "content": "Document group envelope management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4f729f7-58e1-40fc-b613-ea3a66bf6c48",
+          "name": "List Envelopes",
+          "request": {
+            "name": "List Envelopes",
+            "description": {
+              "content": "Retrieve all document group envelopes for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documentgroup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9a53eae-0f6d-45bf-8bea-6d963a4d6fa8",
+              "name": "List of envelopes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documentgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"created\": \"1991-05-04T06:55:13.899Z\",\n    \"updated\": \"1967-08-01T09:13:55.084Z\",\n    \"documents\": [\n      {\n        \"id\": \"string\",\n        \"document_name\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"document_name\": \"string\"\n      }\n    ],\n    \"routing_details\": {}\n  },\n  {\n    \"id\": \"string\",\n    \"created\": \"1968-08-24T18:15:49.122Z\",\n    \"updated\": \"2023-09-16T06:09:54.997Z\",\n    \"documents\": [\n      {\n        \"id\": \"string\",\n        \"document_name\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"document_name\": \"string\"\n      }\n    ],\n    \"routing_details\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ace45eb-05c7-4c30-8eca-7f7626c74a1b",
+          "name": "Create Envelope",
+          "request": {
+            "name": "Create Envelope",
+            "description": {
+              "content": "Create a new document group envelope combining multiple documents for coordinated signing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documentgroup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"routing_details\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32940268-64fd-4e19-8f21-40f797299e12",
+              "name": "Envelope created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documentgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"routing_details\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "176f4e1f-027f-4e41-900e-9d5ea3d4218a",
+          "name": "Get Envelope",
+          "request": {
+            "name": "Get Envelope",
+            "description": {
+              "content": "Retrieve details of a specific document group envelope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documentgroup",
+                ":group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_id",
+                  "description": "(Required) Unique envelope/document group identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8035635e-6fe2-489f-a489-3367169b2dce",
+              "name": "Envelope details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documentgroup",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_id",
+                      "description": "(Required) Unique envelope/document group identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": \"1971-07-19T22:25:05.648Z\",\n  \"updated\": \"1975-06-02T10:33:22.844Z\",\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"document_name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"document_name\": \"string\"\n    }\n  ],\n  \"routing_details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b8b6922-b855-4ecf-b770-b1b406612c5b",
+              "name": "Envelope not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documentgroup",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_id",
+                      "description": "(Required) Unique envelope/document group identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.signnow.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fd30df3f-ba64-4ddc-9438-7b455e8e2595",
+    "name": "SignNow REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+      "type": "text/plain"
+    }
+  }
+}

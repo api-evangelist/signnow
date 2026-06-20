@@ -3,7 +3,7 @@ description: >-
   SignNow is an e-signature platform by airSlate that enables businesses to send, sign, and manage legally binding
   documents electronically. It provides a REST API for embedding e-signature workflows, document creation, template
   management, and bulk signing operations into any application.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/apis.yml
 created: '2026-05-02'
 modified: '2026-05-19'
@@ -19,7 +19,7 @@ apis:
       The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It
       supports document upload, template-based signing workflows, signature invitations, bulk signing, user management,
       and webhook notifications.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.signnow.com/docs/signnow/welcome
     baseURL: https://api.signnow.com
     tags:

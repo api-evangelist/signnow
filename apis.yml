@@ -48,6 +48,10 @@ apis:
         email: api@signnow.com
         url: https://docs.signnow.com
 common:
+  - type: DomainSecurity
+    url: security/signnow-domain-security.yml
+  - type: Authentication
+    url: authentication/signnow-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/signnow-esignature
   - type: GitHubOrganization
@@ -68,6 +72,8 @@ common:
     url: https://www.signnow.com/security
   - type: Integrations
     url: https://www.signnow.com/integrations
+  - url: https://www.signnow.com/blog/
+    type: Blog
   - name: MCP Server
     url: https://github.com/signnow/sn-api-helper-mcp
     type: MCPServer

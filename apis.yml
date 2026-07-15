@@ -48,6 +48,8 @@ apis:
         email: api@signnow.com
         url: https://docs.signnow.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/signnow-agentic-access.yml
   - type: DomainSecurity
     url: security/signnow-domain-security.yml
   - type: Authentication

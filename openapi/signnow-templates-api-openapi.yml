@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST Authentication Templates API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Templates
+  description: Create and manage document templates
+paths:
+  /template:
+    get:
+      operationId: listTemplates
+      summary: List Templates
+      description: Retrieve all document templates for the authenticated user.
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+    post:
+      operationId: createTemplate
+      summary: Create Template
+      description: Create a new reusable document template from an uploaded document.
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - document_id
+              - document_name
+              properties:
+                document_id:
+                  type: string
+                  description: Source document ID to convert to template
+                document_name:
+                  type: string
+                  description: Name for the template
+      responses:
+        '200':
+          description: Template created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Template ID
+  /template/{template_id}:
+    get:
+      operationId: getTemplate
+      summary: Get Template
+      description: Retrieve details of a specific document template.
+      tags:
+      - Templates
+      parameters:
+      - name: template_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique template identifier
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '404':
+          description: Template not found
+    delete:
+      operationId: deleteTemplate
+      summary: Delete Template
+      description: Delete a document template from SignNow.
+      tags:
+      - Templates
+      parameters:
+      - name: template_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique template identifier
+      responses:
+        '200':
+          description: Template deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+components:
+  schemas:
+    Field:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - signature
+          - initials
+          - text
+          - date
+          - checkbox
+          - dropdown
+          - radiobutton
+          description: Field type
+        x:
+          type: number
+          description: X coordinate on page
+        y:
+          type: number
+          description: Y coordinate on page
+        width:
+          type: number
+          description: Field width
+        height:
+          type: number
+          description: Field height
+        page_number:
+          type: integer
+          description: Page number (0-indexed)
+        role_id:
+          type: string
+          description: Role assigned to fill this field
+        required:
+          type: boolean
+          description: Whether this field is required
+        label:
+          type: string
+          description: Field label
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Template ID
+        document_name:
+          type: string
+          description: Template name
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              unique_id:
+                type: string
+              name:
+                type: string
+              signing_order:
+                type: integer
+          description: Signing roles in this template
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        page_count:
+          type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome

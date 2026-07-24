@@ -1,0 +1,193 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST Authentication Signing API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Signing
+  description: Send signature invitations and manage signers
+paths:
+  /document/{document_id}/invite:
+    post:
+      operationId: sendSignatureInvite
+      summary: Send Signature Invite
+      description: Send a signature invitation to one or more recipients for a document.
+      tags:
+      - Signing
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteRequest'
+      responses:
+        '200':
+          description: Invitations sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: Invalid invite request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /document/{document_id}/fieldinvitecancel:
+    put:
+      operationId: cancelSignatureInvite
+      summary: Cancel Signature Invite
+      description: Cancel all pending signature invitations for a document.
+      tags:
+      - Signing
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      responses:
+        '200':
+          description: Invite cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '404':
+          description: Document not found
+  /template/{template_id}/bulkinvite:
+    post:
+      operationId: sendBulkInvite
+      summary: Send Bulk Invite
+      description: Send signature invitations to multiple recipients using a CSV file with template-based documents.
+      tags:
+      - Signing
+      parameters:
+      - name: template_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique template identifier
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: CSV file with recipient data
+                subject:
+                  type: string
+                  description: Email subject line
+                message:
+                  type: string
+                  description: Email message body
+      responses:
+        '200':
+          description: Bulk invites sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+components:
+  schemas:
+    InviteRequest:
+      type: object
+      required:
+      - to
+      - from
+      properties:
+        from:
+          type: string
+          format: email
+          description: Sender email address
+        to:
+          type: array
+          items:
+            type: object
+            required:
+            - email
+            - role_id
+            properties:
+              email:
+                type: string
+                format: email
+              role_id:
+                type: string
+              order:
+                type: integer
+              subject:
+                type: string
+              message:
+                type: string
+          description: List of recipients and their signing roles
+        cc:
+          type: array
+          items:
+            type: string
+            format: email
+          description: CC recipients
+        subject:
+          type: string
+          description: Email subject line
+        message:
+          type: string
+          description: Email message body
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome

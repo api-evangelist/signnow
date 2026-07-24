@@ -1,0 +1,145 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST Authentication Users API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Users
+  description: User account management
+paths:
+  /user:
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Create a new SignNow user account.
+      tags:
+      - Users
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '200':
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: User ID
+  /user/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get Current User
+      description: Retrieve the profile information for the authenticated user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+  /user/{user_id}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Retrieve profile information for a specific user by ID.
+      tags:
+      - Users
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique user identifier
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        active:
+          type: boolean
+        organization:
+          type: string
+        created:
+          type: string
+          format: date-time
+        credits:
+          type: integer
+          description: Remaining signature credits
+        subscription:
+          type: object
+          properties:
+            api_requests_limit:
+              type: integer
+            api_requests_used:
+              type: integer
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      - password
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome

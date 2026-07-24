@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST Authentication API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Authentication
+  description: OAuth2 token management
+paths:
+  /oauth2/token:
+    post:
+      operationId: createOAuthToken
+      summary: Create OAuth Token
+      description: Generate an OAuth 2.0 access token using client credentials or password grant type.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - password
+                  - authorization_code
+                  - refresh_token
+                  description: OAuth grant type
+                client_id:
+                  type: string
+                  description: Application client ID
+                client_secret:
+                  type: string
+                  description: Application client secret
+                username:
+                  type: string
+                  description: User email (for password grant)
+                password:
+                  type: string
+                  description: User password (for password grant)
+                code:
+                  type: string
+                  description: Authorization code (for authorization_code grant)
+                refresh_token:
+                  type: string
+                  description: Refresh token (for refresh_token grant)
+      responses:
+        '200':
+          description: Access token generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthToken'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    OAuthToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer access token
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          description: Token expiry in seconds
+        refresh_token:
+          type: string
+          description: Token for refreshing access
+        scope:
+          type: string
+          description: Token scope
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome

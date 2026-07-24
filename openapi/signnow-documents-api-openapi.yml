@@ -1,0 +1,331 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST Authentication Documents API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Documents
+  description: Upload, manage, and retrieve documents
+paths:
+  /document:
+    get:
+      operationId: listDocuments
+      summary: List Documents
+      description: Retrieve a list of all documents for the authenticated user.
+      tags:
+      - Documents
+      parameters:
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+        description: Number of documents per page
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Page number
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: uploadDocument
+      summary: Upload Document
+      description: Upload a PDF document to SignNow for e-signature processing.
+      tags:
+      - Documents
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: PDF file to upload
+                Tags:
+                  type: string
+                  description: Comma-separated tags
+      responses:
+        '200':
+          description: Document uploaded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Document ID
+        '400':
+          description: Invalid file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /document/{document_id}:
+    get:
+      operationId: getDocument
+      summary: Get Document
+      description: Retrieve document details including fields, signers, and status.
+      tags:
+      - Documents
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDocument
+      summary: Delete Document
+      description: Permanently delete a document from SignNow.
+      tags:
+      - Documents
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      responses:
+        '200':
+          description: Document deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /document/{document_id}/download:
+    get:
+      operationId: downloadDocument
+      summary: Download Document
+      description: Download a document as a PDF file, including signatures and completed fields.
+      tags:
+      - Documents
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique document identifier
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - collapsed
+          - with_history
+        description: Download type
+      responses:
+        '200':
+          description: Document PDF
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Document not found
+components:
+  schemas:
+    SigningRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        signer_email:
+          type: string
+          format: email
+        status:
+          type: string
+          enum:
+          - pending
+          - fulfilled
+          - declined
+          - expired
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document ID
+        document_name:
+          type: string
+          description: Document name/title
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+        origin_document_id:
+          type: string
+          description: Source template ID if created from template
+        user_id:
+          type: string
+          description: Owner user ID
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              unique_id:
+                type: string
+              name:
+                type: string
+              signing_order:
+                type: integer
+          description: Signing roles defined for this document
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+          description: Form fields in the document
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/SigningRequest'
+          description: Pending signing requests
+        tags:
+          type: array
+          items:
+            type: string
+          description: Document tags
+        page_count:
+          type: integer
+          description: Number of pages in document
+        signing_session_caching:
+          type: boolean
+        fieldinvite_status:
+          type: string
+          enum:
+          - pending
+          - fulfilled
+          - declined
+          - expired
+          description: Overall invite status
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+    Field:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - signature
+          - initials
+          - text
+          - date
+          - checkbox
+          - dropdown
+          - radiobutton
+          description: Field type
+        x:
+          type: number
+          description: X coordinate on page
+        y:
+          type: number
+          description: Y coordinate on page
+        width:
+          type: number
+          description: Field width
+        height:
+          type: number
+          description: Field height
+        page_number:
+          type: integer
+          description: Page number (0-indexed)
+        role_id:
+          type: string
+          description: Role assigned to fill this field
+        required:
+          type: boolean
+          description: Whether this field is required
+        label:
+          type: string
+          description: Field label
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome

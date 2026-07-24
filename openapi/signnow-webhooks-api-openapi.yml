@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST Authentication Webhooks API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Webhooks
+  description: Event subscription and notification management
+paths:
+  /api/events:
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: Retrieve all registered webhook event subscriptions for the account.
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: List of webhook subscriptions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      summary: Create Webhook
+      description: Subscribe to a SignNow event by registering a webhook endpoint URL.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+  /api/events/{webhook_id}:
+    delete:
+      operationId: deleteWebhook
+      summary: Delete Webhook
+      description: Remove a webhook event subscription by ID.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhook_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique webhook identifier
+      responses:
+        '200':
+          description: Webhook deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+components:
+  schemas:
+    WebhookRequest:
+      type: object
+      required:
+      - event
+      - action
+      properties:
+        event:
+          type: string
+          enum:
+          - document.update
+          - document.delete
+          - invite.update
+          - invite.decline
+          - document.create
+          description: Event type to subscribe to
+        entity_id:
+          type: string
+          description: Specific document or template ID to watch
+        action:
+          type: string
+          description: HTTPS URL to receive webhook events
+        attributes:
+          type: object
+          additionalProperties: true
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        event:
+          type: string
+          enum:
+          - document.update
+          - document.delete
+          - invite.update
+          - invite.decline
+          - document.create
+        entity_id:
+          type: string
+          description: Document or template ID to watch (optional)
+        action:
+          type: string
+          description: Webhook target URL
+        attributes:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome

@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: SignNow REST Authentication Envelopes API
+  description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
+  version: '2.0'
+  contact:
+    name: SignNow API Support
+    email: api@signnow.com
+    url: https://docs.signnow.com
+  termsOfService: https://www.signnow.com/terms-of-service
+  license:
+    name: MIT
+    url: https://github.com/signnow/OpenAPI-Specification/blob/master/LICENSE
+servers:
+- url: https://api.signnow.com
+  description: Production
+- url: https://api-eval.signnow.com
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Envelopes
+  description: Document group envelope management
+paths:
+  /documentgroup:
+    get:
+      operationId: listEnvelopes
+      summary: List Envelopes
+      description: Retrieve all document group envelopes for the authenticated user.
+      tags:
+      - Envelopes
+      responses:
+        '200':
+          description: List of envelopes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Envelope'
+    post:
+      operationId: createEnvelope
+      summary: Create Envelope
+      description: Create a new document group envelope combining multiple documents for coordinated signing.
+      tags:
+      - Envelopes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvelopeRequest'
+      responses:
+        '200':
+          description: Envelope created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+  /documentgroup/{group_id}:
+    get:
+      operationId: getEnvelope
+      summary: Get Envelope
+      description: Retrieve details of a specific document group envelope.
+      tags:
+      - Envelopes
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique envelope/document group identifier
+      responses:
+        '200':
+          description: Envelope details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        '404':
+          description: Envelope not found
+components:
+  schemas:
+    EnvelopeRequest:
+      type: object
+      required:
+      - document_ids
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          description: List of document IDs to include in envelope
+        routing_details:
+          type: object
+          description: Routing and signing order configuration
+    Envelope:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Envelope ID
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              document_name:
+                type: string
+        routing_details:
+          type: object
+          properties:
+            routing_groups:
+              type: array
+              items:
+                type: object
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token. Obtain via POST /oauth2/token.
+externalDocs:
+  description: SignNow API Documentation
+  url: https://docs.signnow.com/docs/signnow/welcome

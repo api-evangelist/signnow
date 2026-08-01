@@ -1,0 +1,437 @@
+{
+  "info": {
+    "_postman_id": "3eb1e0aa-c2c2-4fba-8e4a-c9c2f8c248fa",
+    "name": "SignNow REST Authentication Templates API",
+    "description": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:54:00.000Z",
+    "updatedAt": "2026-07-28T02:54:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3eb1e0aa-c2c2-4fba-8e4a-c9c2f8c248fa"
+  },
+  "item": [
+    {
+      "name": "template",
+      "item": [
+        {
+          "name": "{template_id}",
+          "item": [
+            {
+              "name": "Get Template",
+              "id": "440ce7d5-d540-483f-b12f-c86d7ba19196",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/template/:template_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d1042d98-611c-417c-b96d-3598db0d169d",
+                      "key": "template_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique template identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific document template."
+              },
+              "response": [
+                {
+                  "id": "a629e8b6-b332-4796-a2ee-297c512fa276",
+                  "name": "Template details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "template_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"document_name\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"updated\": \"<dateTime>\",\n  \"roles\": [\n    {\n      \"unique_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"signing_order\": \"<integer>\"\n    },\n    {\n      \"unique_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"signing_order\": \"<integer>\"\n    }\n  ],\n  \"fields\": [\n    {\n      \"type\": \"date\",\n      \"x\": \"<number>\",\n      \"y\": \"<number>\",\n      \"width\": \"<number>\",\n      \"height\": \"<number>\",\n      \"page_number\": \"<integer>\",\n      \"role_id\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"type\": \"date\",\n      \"x\": \"<number>\",\n      \"y\": \"<number>\",\n      \"width\": \"<number>\",\n      \"height\": \"<number>\",\n      \"page_number\": \"<integer>\",\n      \"role_id\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"page_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:54:00.000Z",
+                  "updatedAt": "2026-07-28T02:54:00.000Z",
+                  "uid": "35240-a629e8b6-b332-4796-a2ee-297c512fa276"
+                },
+                {
+                  "id": "d1aa580f-2392-4e3a-aa67-4ced8ee87f12",
+                  "name": "Template not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "template_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:54:00.000Z",
+                  "updatedAt": "2026-07-28T02:54:00.000Z",
+                  "uid": "35240-d1aa580f-2392-4e3a-aa67-4ced8ee87f12"
+                }
+              ],
+              "createdAt": "2026-07-28T02:54:00.000Z",
+              "updatedAt": "2026-07-28T02:54:00.000Z",
+              "uid": "35240-440ce7d5-d540-483f-b12f-c86d7ba19196"
+            },
+            {
+              "name": "Delete Template",
+              "id": "9a3c1df3-598c-4801-9ccc-1f22b2c1826a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/template/:template_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template",
+                    ":template_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ee785657-3968-44d5-8654-aa790f525c58",
+                      "key": "template_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique template identifier"
+                    }
+                  ]
+                },
+                "description": "Delete a document template from SignNow."
+              },
+              "response": [
+                {
+                  "id": "bcccad93-8f41-4f4d-81ba-77a6aa2cf6b0",
+                  "name": "Template deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/template/:template_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        ":template_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "template_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:54:00.000Z",
+                  "updatedAt": "2026-07-28T02:54:00.000Z",
+                  "uid": "35240-bcccad93-8f41-4f4d-81ba-77a6aa2cf6b0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:54:00.000Z",
+              "updatedAt": "2026-07-28T02:54:00.000Z",
+              "uid": "35240-9a3c1df3-598c-4801-9ccc-1f22b2c1826a"
+            }
+          ],
+          "id": "bc4388b9-aaef-443f-9ec3-338c7758d4af",
+          "createdAt": "2026-07-28T02:54:00.000Z",
+          "updatedAt": "2026-07-28T02:54:00.000Z",
+          "uid": "35240-bc4388b9-aaef-443f-9ec3-338c7758d4af"
+        },
+        {
+          "name": "List Templates",
+          "id": "0d5b38b0-407e-4354-a820-7325c9e0de6d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/template",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "template"
+              ]
+            },
+            "description": "Retrieve all document templates for the authenticated user."
+          },
+          "response": [
+            {
+              "id": "9b06dc7a-088d-4089-be6c-4c9e8b1783f8",
+              "name": "List of templates",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/template",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"document_name\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"roles\": [\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      },\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"signature\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      },\n      {\n        \"type\": \"text\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      }\n    ],\n    \"page_count\": \"<integer>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"document_name\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"roles\": [\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      },\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"checkbox\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      },\n      {\n        \"type\": \"date\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      }\n    ],\n    \"page_count\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:54:00.000Z",
+              "updatedAt": "2026-07-28T02:54:00.000Z",
+              "uid": "35240-9b06dc7a-088d-4089-be6c-4c9e8b1783f8"
+            }
+          ],
+          "createdAt": "2026-07-28T02:54:00.000Z",
+          "updatedAt": "2026-07-28T02:54:00.000Z",
+          "uid": "35240-0d5b38b0-407e-4354-a820-7325c9e0de6d"
+        },
+        {
+          "name": "Create Template",
+          "id": "a95584e0-0a60-48ce-8cf0-1a83dfcb7b5f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_id\": \"<string>\",\n  \"document_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/template",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "template"
+              ]
+            },
+            "description": "Create a new reusable document template from an uploaded document."
+          },
+          "response": [
+            {
+              "id": "e1154388-6d4f-418b-81c8-0de7b738d804",
+              "name": "Template created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"<string>\",\n  \"document_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/template",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:54:00.000Z",
+              "updatedAt": "2026-07-28T02:54:00.000Z",
+              "uid": "35240-e1154388-6d4f-418b-81c8-0de7b738d804"
+            }
+          ],
+          "createdAt": "2026-07-28T02:54:00.000Z",
+          "updatedAt": "2026-07-28T02:54:00.000Z",
+          "uid": "35240-a95584e0-0a60-48ce-8cf0-1a83dfcb7b5f"
+        }
+      ],
+      "id": "902a5ca5-47ef-4a65-a1e9-6b55911825cc",
+      "createdAt": "2026-07-28T02:54:00.000Z",
+      "updatedAt": "2026-07-28T02:54:00.000Z",
+      "uid": "35240-902a5ca5-47ef-4a65-a1e9-6b55911825cc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.signnow.com"
+    }
+  ]
+}

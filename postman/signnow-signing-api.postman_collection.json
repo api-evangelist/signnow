@@ -1,0 +1,547 @@
+{
+  "info": {
+    "_postman_id": "3ea454fc-0f9b-49fe-b9ac-7649595b0a9f",
+    "name": "SignNow REST Authentication Signing API",
+    "description": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:59.000Z",
+    "updatedAt": "2026-07-28T02:53:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3ea454fc-0f9b-49fe-b9ac-7649595b0a9f"
+  },
+  "item": [
+    {
+      "name": "document",
+      "item": [
+        {
+          "name": "{document_id}",
+          "item": [
+            {
+              "name": "invite",
+              "item": [
+                {
+                  "name": "Send Signature Invite",
+                  "id": "b8d607ca-aa3e-4923-91dc-9f73cce25d84",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/document/:document_id/invite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "document",
+                        ":document_id",
+                        "invite"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c004b697-e237-44ba-a774-47ca2d51e36d",
+                          "key": "document_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique document identifier"
+                        }
+                      ]
+                    },
+                    "description": "Send a signature invitation to one or more recipients for a document."
+                  },
+                  "response": [
+                    {
+                      "id": "385b9a30-fd1b-43cc-9129-f22cb250bad6",
+                      "name": "Invitations sent",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/document/:document_id/invite",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "document",
+                            ":document_id",
+                            "invite"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:53:59.000Z",
+                      "updatedAt": "2026-07-28T02:53:59.000Z",
+                      "uid": "35240-385b9a30-fd1b-43cc-9129-f22cb250bad6"
+                    },
+                    {
+                      "id": "d71af6d8-c138-472b-93da-945c205d3af2",
+                      "name": "Invalid invite request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/document/:document_id/invite",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "document",
+                            ":document_id",
+                            "invite"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:53:59.000Z",
+                      "updatedAt": "2026-07-28T02:53:59.000Z",
+                      "uid": "35240-d71af6d8-c138-472b-93da-945c205d3af2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:53:59.000Z",
+                  "updatedAt": "2026-07-28T02:53:59.000Z",
+                  "uid": "35240-b8d607ca-aa3e-4923-91dc-9f73cce25d84"
+                }
+              ],
+              "id": "34574593-b9d1-4f8a-8c3e-6ac326fc82f8",
+              "createdAt": "2026-07-28T02:53:59.000Z",
+              "updatedAt": "2026-07-28T02:53:59.000Z",
+              "uid": "35240-34574593-b9d1-4f8a-8c3e-6ac326fc82f8"
+            },
+            {
+              "name": "fieldinvitecancel",
+              "item": [
+                {
+                  "name": "Cancel Signature Invite",
+                  "id": "640d259d-57ff-4cfe-b012-2fa896149fc6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/document/:document_id/fieldinvitecancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "document",
+                        ":document_id",
+                        "fieldinvitecancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9d991396-b78c-40e0-b5ff-7400e9b38185",
+                          "key": "document_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique document identifier"
+                        }
+                      ]
+                    },
+                    "description": "Cancel all pending signature invitations for a document."
+                  },
+                  "response": [
+                    {
+                      "id": "474940aa-57f5-48ba-a7ad-6595245403d3",
+                      "name": "Invite cancelled",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/document/:document_id/fieldinvitecancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "document",
+                            ":document_id",
+                            "fieldinvitecancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:53:59.000Z",
+                      "updatedAt": "2026-07-28T02:53:59.000Z",
+                      "uid": "35240-474940aa-57f5-48ba-a7ad-6595245403d3"
+                    },
+                    {
+                      "id": "1c645040-31c8-41e4-89f7-7d87ab479fab",
+                      "name": "Document not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/document/:document_id/fieldinvitecancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "document",
+                            ":document_id",
+                            "fieldinvitecancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:53:59.000Z",
+                      "updatedAt": "2026-07-28T02:53:59.000Z",
+                      "uid": "35240-1c645040-31c8-41e4-89f7-7d87ab479fab"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:53:59.000Z",
+                  "updatedAt": "2026-07-28T02:53:59.000Z",
+                  "uid": "35240-640d259d-57ff-4cfe-b012-2fa896149fc6"
+                }
+              ],
+              "id": "42859838-7b23-4e4e-aaa8-b1c40e76dd36",
+              "createdAt": "2026-07-28T02:53:59.000Z",
+              "updatedAt": "2026-07-28T02:53:59.000Z",
+              "uid": "35240-42859838-7b23-4e4e-aaa8-b1c40e76dd36"
+            }
+          ],
+          "id": "c4591f69-dad8-478e-9dd0-09cdbe0828df",
+          "createdAt": "2026-07-28T02:53:59.000Z",
+          "updatedAt": "2026-07-28T02:53:59.000Z",
+          "uid": "35240-c4591f69-dad8-478e-9dd0-09cdbe0828df"
+        }
+      ],
+      "id": "067f8643-5552-46a9-8920-833529b01d56",
+      "createdAt": "2026-07-28T02:53:59.000Z",
+      "updatedAt": "2026-07-28T02:53:59.000Z",
+      "uid": "35240-067f8643-5552-46a9-8920-833529b01d56"
+    },
+    {
+      "name": "template",
+      "item": [
+        {
+          "name": "{template_id}",
+          "item": [
+            {
+              "name": "bulkinvite",
+              "item": [
+                {
+                  "name": "Send Bulk Invite",
+                  "id": "0117778b-11c2-448a-943f-a6bca1b7aab2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) CSV file with recipient data",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        },
+                        {
+                          "description": "Email subject line",
+                          "key": "subject",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Email message body",
+                          "key": "message",
+                          "value": "<string>",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/:template_id/bulkinvite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        ":template_id",
+                        "bulkinvite"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eb76ce5e-0674-4029-9b7d-f3ad611d127e",
+                          "key": "template_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique template identifier"
+                        }
+                      ]
+                    },
+                    "description": "Send signature invitations to multiple recipients using a CSV file with template-based documents."
+                  },
+                  "response": [
+                    {
+                      "id": "84684bfa-d396-4d85-8433-b78807805794",
+                      "name": "Bulk invites sent",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) CSV file with recipient data",
+                              "key": "file",
+                              "type": "file"
+                            },
+                            {
+                              "description": "Email subject line",
+                              "key": "subject",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "Email message body",
+                              "key": "message",
+                              "value": "<string>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/template/:template_id/bulkinvite",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "template",
+                            ":template_id",
+                            "bulkinvite"
+                          ],
+                          "variable": [
+                            {
+                              "key": "template_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:53:59.000Z",
+                      "updatedAt": "2026-07-28T02:53:59.000Z",
+                      "uid": "35240-84684bfa-d396-4d85-8433-b78807805794"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:53:59.000Z",
+                  "updatedAt": "2026-07-28T02:53:59.000Z",
+                  "uid": "35240-0117778b-11c2-448a-943f-a6bca1b7aab2"
+                }
+              ],
+              "id": "f3d9c144-2aaa-4056-b90c-bf49448a982e",
+              "createdAt": "2026-07-28T02:53:59.000Z",
+              "updatedAt": "2026-07-28T02:53:59.000Z",
+              "uid": "35240-f3d9c144-2aaa-4056-b90c-bf49448a982e"
+            }
+          ],
+          "id": "c10c5aec-7452-4794-87cf-7eba747ae044",
+          "createdAt": "2026-07-28T02:53:59.000Z",
+          "updatedAt": "2026-07-28T02:53:59.000Z",
+          "uid": "35240-c10c5aec-7452-4794-87cf-7eba747ae044"
+        }
+      ],
+      "id": "8ff8b8f1-1d71-4976-a9f8-8c4dd07f3cc1",
+      "createdAt": "2026-07-28T02:53:59.000Z",
+      "updatedAt": "2026-07-28T02:53:59.000Z",
+      "uid": "35240-8ff8b8f1-1d71-4976-a9f8-8c4dd07f3cc1"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.signnow.com"
+    }
+  ]
+}

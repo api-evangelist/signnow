@@ -1,0 +1,325 @@
+{
+  "info": {
+    "_postman_id": "f24ef77e-f129-4908-a379-23b45dcb4071",
+    "name": "SignNow REST Authentication Webhooks API",
+    "description": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:54:18.000Z",
+    "updatedAt": "2026-07-28T02:54:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f24ef77e-f129-4908-a379-23b45dcb4071"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "events",
+          "item": [
+            {
+              "name": "{webhook_id}",
+              "item": [
+                {
+                  "name": "Delete Webhook",
+                  "id": "d9be096b-ae4b-4beb-899f-098c51840b4c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events/:webhook_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events",
+                        ":webhook_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5da5e0aa-1cb5-4357-9b18-b81d1e06511e",
+                          "key": "webhook_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique webhook identifier"
+                        }
+                      ]
+                    },
+                    "description": "Remove a webhook event subscription by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "88c1f08f-744b-4f18-b62c-df9fbc5d7057",
+                      "name": "Webhook deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/events/:webhook_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "events",
+                            ":webhook_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:54:19.000Z",
+                      "updatedAt": "2026-07-28T02:54:19.000Z",
+                      "uid": "35240-88c1f08f-744b-4f18-b62c-df9fbc5d7057"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:54:19.000Z",
+                  "updatedAt": "2026-07-28T02:54:19.000Z",
+                  "uid": "35240-d9be096b-ae4b-4beb-899f-098c51840b4c"
+                }
+              ],
+              "id": "e6238fd3-529e-4157-b888-edfccbb0cbc0",
+              "createdAt": "2026-07-28T02:54:19.000Z",
+              "updatedAt": "2026-07-28T02:54:19.000Z",
+              "uid": "35240-e6238fd3-529e-4157-b888-edfccbb0cbc0"
+            },
+            {
+              "name": "List Webhooks",
+              "id": "58b7d905-491a-48e6-b3a9-2e5d4d5ed805",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "events"
+                  ]
+                },
+                "description": "Retrieve all registered webhook event subscriptions for the account."
+              },
+              "response": [
+                {
+                  "id": "26a56a1c-976f-488c-89ac-941a44deefe2",
+                  "name": "List of webhook subscriptions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"event\": \"invite.update\",\n    \"entity_id\": \"<string>\",\n    \"action\": \"<string>\",\n    \"attributes\": {\n      \"eaafd\": -94124657,\n      \"adipisicing7\": -54001229,\n      \"veniam_73\": \"ut\",\n      \"fugiat_0\": -17036723,\n      \"in2c\": 31789883\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"event\": \"document.update\",\n    \"entity_id\": \"<string>\",\n    \"action\": \"<string>\",\n    \"attributes\": {\n      \"esse_\": -29323275.537978604,\n      \"adipisicing_224\": \"fugiat ex velit\",\n      \"esse_23\": true,\n      \"exercitation_a38\": 96697533\n    }\n  }\n]",
+                  "createdAt": "2026-07-28T02:54:19.000Z",
+                  "updatedAt": "2026-07-28T02:54:19.000Z",
+                  "uid": "35240-26a56a1c-976f-488c-89ac-941a44deefe2"
+                }
+              ],
+              "createdAt": "2026-07-28T02:54:19.000Z",
+              "updatedAt": "2026-07-28T02:54:19.000Z",
+              "uid": "35240-58b7d905-491a-48e6-b3a9-2e5d4d5ed805"
+            },
+            {
+              "name": "Create Webhook",
+              "id": "8ea3a28c-3464-437f-90af-d129563c2ca7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"event\": \"invite.decline\",\n  \"action\": \"<string>\",\n  \"entity_id\": \"<string>\",\n  \"attributes\": {\n    \"laborisa\": \"sunt laboris eiusmod \",\n    \"quis_eb6\": 3525463\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "events"
+                  ]
+                },
+                "description": "Subscribe to a SignNow event by registering a webhook endpoint URL."
+              },
+              "response": [
+                {
+                  "id": "0efd1e9f-625a-46b3-8e7e-fb32a25478fc",
+                  "name": "Webhook created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"event\": \"invite.decline\",\n  \"action\": \"<string>\",\n  \"entity_id\": \"<string>\",\n  \"attributes\": {\n    \"laborisa\": \"sunt laboris eiusmod \",\n    \"quis_eb6\": 3525463\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:54:19.000Z",
+                  "updatedAt": "2026-07-28T02:54:19.000Z",
+                  "uid": "35240-0efd1e9f-625a-46b3-8e7e-fb32a25478fc"
+                }
+              ],
+              "createdAt": "2026-07-28T02:54:19.000Z",
+              "updatedAt": "2026-07-28T02:54:19.000Z",
+              "uid": "35240-8ea3a28c-3464-437f-90af-d129563c2ca7"
+            }
+          ],
+          "id": "6d5ac2cf-644b-4bad-870f-86198617dc18",
+          "createdAt": "2026-07-28T02:54:19.000Z",
+          "updatedAt": "2026-07-28T02:54:19.000Z",
+          "uid": "35240-6d5ac2cf-644b-4bad-870f-86198617dc18"
+        }
+      ],
+      "id": "025e3a8b-856e-4e32-b0b3-2ab66ae39a0e",
+      "createdAt": "2026-07-28T02:54:19.000Z",
+      "updatedAt": "2026-07-28T02:54:19.000Z",
+      "uid": "35240-025e3a8b-856e-4e32-b0b3-2ab66ae39a0e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.signnow.com"
+    }
+  ]
+}

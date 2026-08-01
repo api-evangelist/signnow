@@ -1,0 +1,26 @@
+{
+  "provider": "signnow",
+  "sources": [
+    "signnow-authentication-api-openapi.yml",
+    "signnow-documents-api-openapi.yml",
+    "signnow-envelopes-api-openapi.yml",
+    "signnow-signing-api-openapi.yml",
+    "signnow-templates-api-openapi.yml",
+    "signnow-users-api-openapi.yml",
+    "signnow-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "signnow-authentication-api-openapi.yml",
+    "signnow-documents-api-openapi.yml",
+    "signnow-envelopes-api-openapi.yml",
+    "signnow-signing-api-openapi.yml",
+    "signnow-templates-api-openapi.yml",
+    "signnow-users-api-openapi.yml",
+    "signnow-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

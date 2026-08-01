@@ -1,0 +1,298 @@
+{
+  "info": {
+    "_postman_id": "ba82801a-39fb-456d-ab20-7e2b14892fef",
+    "name": "SignNow REST Authentication API",
+    "description": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:22.000Z",
+    "updatedAt": "2026-07-28T02:53:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ba82801a-39fb-456d-ab20-7e2b14892fef"
+  },
+  "item": [
+    {
+      "name": "oauth2",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Create OAuth Token",
+              "id": "0dfb6799-3df1-41ae-a59c-64c858622b80",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) OAuth grant type",
+                      "key": "grant_type",
+                      "value": "refresh_token"
+                    },
+                    {
+                      "description": "(Required) Application client ID",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Application client secret",
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "User email (for password grant)",
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "User password (for password grant)",
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Authorization code (for authorization_code grant)",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Refresh token (for refresh_token grant)",
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "Generate an OAuth 2.0 access token using client credentials or password grant type."
+              },
+              "response": [
+                {
+                  "id": "1262b50d-e3df-46f6-b10e-1a17438e9131",
+                  "name": "Access token generated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth grant type",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) Application client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Application client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "User email (for password grant)",
+                          "key": "username",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "User password (for password grant)",
+                          "key": "password",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Authorization code (for authorization_code grant)",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Refresh token (for refresh_token grant)",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refresh_token\": \"<string>\",\n  \"scope\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:53:23.000Z",
+                  "updatedAt": "2026-07-28T02:53:23.000Z",
+                  "uid": "35240-1262b50d-e3df-46f6-b10e-1a17438e9131"
+                },
+                {
+                  "id": "bb80da3a-4144-4f6b-bcb2-2de88d72f1b4",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth grant type",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) Application client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Application client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "User email (for password grant)",
+                          "key": "username",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "User password (for password grant)",
+                          "key": "password",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Authorization code (for authorization_code grant)",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Refresh token (for refresh_token grant)",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:53:23.000Z",
+                  "updatedAt": "2026-07-28T02:53:23.000Z",
+                  "uid": "35240-bb80da3a-4144-4f6b-bcb2-2de88d72f1b4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:23.000Z",
+              "updatedAt": "2026-07-28T02:53:23.000Z",
+              "uid": "35240-0dfb6799-3df1-41ae-a59c-64c858622b80"
+            }
+          ],
+          "id": "4b15f2fd-5788-4c27-8178-00032530560e",
+          "createdAt": "2026-07-28T02:53:23.000Z",
+          "updatedAt": "2026-07-28T02:53:23.000Z",
+          "uid": "35240-4b15f2fd-5788-4c27-8178-00032530560e"
+        }
+      ],
+      "id": "ad4ab15e-f501-4c1b-9158-af248e5cbd6a",
+      "createdAt": "2026-07-28T02:53:23.000Z",
+      "updatedAt": "2026-07-28T02:53:23.000Z",
+      "uid": "35240-ad4ab15e-f501-4c1b-9158-af248e5cbd6a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.signnow.com"
+    }
+  ]
+}

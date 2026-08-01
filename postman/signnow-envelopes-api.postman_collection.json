@@ -1,0 +1,349 @@
+{
+  "info": {
+    "_postman_id": "3cd0e2cf-71b3-4ab9-b562-a646be94af34",
+    "name": "SignNow REST Authentication Envelopes API",
+    "description": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:24.000Z",
+    "updatedAt": "2026-07-28T02:53:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3cd0e2cf-71b3-4ab9-b562-a646be94af34"
+  },
+  "item": [
+    {
+      "name": "documentgroup",
+      "item": [
+        {
+          "name": "{group_id}",
+          "item": [
+            {
+              "name": "Get Envelope",
+              "id": "a6344021-c3d2-427a-a5b2-e6e1a738595f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documentgroup/:group_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documentgroup",
+                    ":group_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "879f571d-a553-4eeb-9f09-0b555088e548",
+                      "key": "group_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique envelope/document group identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific document group envelope."
+              },
+              "response": [
+                {
+                  "id": "d991ff0c-6236-4813-b16a-800275deb60f",
+                  "name": "Envelope details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documentgroup/:group_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documentgroup",
+                        ":group_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"updated\": \"<dateTime>\",\n  \"documents\": [\n    {\n      \"id\": \"<string>\",\n      \"document_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"document_name\": \"<string>\"\n    }\n  ],\n  \"routing_details\": {}\n}",
+                  "createdAt": "2026-07-28T02:53:25.000Z",
+                  "updatedAt": "2026-07-28T02:53:25.000Z",
+                  "uid": "35240-d991ff0c-6236-4813-b16a-800275deb60f"
+                },
+                {
+                  "id": "49edf644-6426-4432-9ea9-5d661ad5fc57",
+                  "name": "Envelope not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documentgroup/:group_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documentgroup",
+                        ":group_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:53:25.000Z",
+                  "updatedAt": "2026-07-28T02:53:25.000Z",
+                  "uid": "35240-49edf644-6426-4432-9ea9-5d661ad5fc57"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:25.000Z",
+              "updatedAt": "2026-07-28T02:53:25.000Z",
+              "uid": "35240-a6344021-c3d2-427a-a5b2-e6e1a738595f"
+            }
+          ],
+          "id": "5e6cf12b-5111-4aad-b7a9-dfdc4583c604",
+          "createdAt": "2026-07-28T02:53:24.000Z",
+          "updatedAt": "2026-07-28T02:53:24.000Z",
+          "uid": "35240-5e6cf12b-5111-4aad-b7a9-dfdc4583c604"
+        },
+        {
+          "name": "List Envelopes",
+          "id": "70771bb4-ad40-4d3d-9412-f9c429c399f0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/documentgroup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documentgroup"
+              ]
+            },
+            "description": "Retrieve all document group envelopes for the authenticated user."
+          },
+          "response": [
+            {
+              "id": "614d8e79-dcd2-4cd6-acc1-c76f5313fefb",
+              "name": "List of envelopes",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documentgroup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documentgroup"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"documents\": [\n      {\n        \"id\": \"<string>\",\n        \"document_name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"document_name\": \"<string>\"\n      }\n    ],\n    \"routing_details\": {}\n  },\n  {\n    \"id\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"documents\": [\n      {\n        \"id\": \"<string>\",\n        \"document_name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"document_name\": \"<string>\"\n      }\n    ],\n    \"routing_details\": {}\n  }\n]",
+              "createdAt": "2026-07-28T02:53:25.000Z",
+              "updatedAt": "2026-07-28T02:53:25.000Z",
+              "uid": "35240-614d8e79-dcd2-4cd6-acc1-c76f5313fefb"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:25.000Z",
+          "updatedAt": "2026-07-28T02:53:25.000Z",
+          "uid": "35240-70771bb4-ad40-4d3d-9412-f9c429c399f0"
+        },
+        {
+          "name": "Create Envelope",
+          "id": "e41351f3-344d-469f-9f7e-135fd70e690a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"routing_details\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documentgroup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documentgroup"
+              ]
+            },
+            "description": "Create a new document group envelope combining multiple documents for coordinated signing."
+          },
+          "response": [
+            {
+              "id": "0a408636-0f00-4229-a305-9d5b86b2d987",
+              "name": "Envelope created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"routing_details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documentgroup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documentgroup"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:53:25.000Z",
+              "updatedAt": "2026-07-28T02:53:25.000Z",
+              "uid": "35240-0a408636-0f00-4229-a305-9d5b86b2d987"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:25.000Z",
+          "updatedAt": "2026-07-28T02:53:25.000Z",
+          "uid": "35240-e41351f3-344d-469f-9f7e-135fd70e690a"
+        }
+      ],
+      "id": "aff77866-bd0c-44a0-b5a0-cb7f2cd714ed",
+      "createdAt": "2026-07-28T02:53:24.000Z",
+      "updatedAt": "2026-07-28T02:53:24.000Z",
+      "uid": "35240-aff77866-bd0c-44a0-b5a0-cb7f2cd714ed"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.signnow.com"
+    }
+  ]
+}

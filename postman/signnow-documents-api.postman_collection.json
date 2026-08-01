@@ -1,0 +1,807 @@
+{
+  "info": {
+    "_postman_id": "a5a255a2-4155-4d41-a475-f6fc17cd54c6",
+    "name": "SignNow REST Authentication Documents API",
+    "description": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:23.000Z",
+    "updatedAt": "2026-07-28T02:53:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a5a255a2-4155-4d41-a475-f6fc17cd54c6"
+  },
+  "item": [
+    {
+      "name": "document",
+      "item": [
+        {
+          "name": "{document_id}",
+          "item": [
+            {
+              "name": "download",
+              "item": [
+                {
+                  "name": "Download Document",
+                  "id": "55cfa4ff-4144-487d-8144-b1d2ef3eee6b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/pdf"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/document/:document_id/download?type=with_history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "document",
+                        ":document_id",
+                        "download"
+                      ],
+                      "query": [
+                        {
+                          "description": "Download type",
+                          "key": "type",
+                          "value": "with_history"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "6e28b078-6639-46ea-af7d-8ac220e7600d",
+                          "key": "document_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique document identifier"
+                        }
+                      ]
+                    },
+                    "description": "Download a document as a PDF file, including signatures and completed fields."
+                  },
+                  "response": [
+                    {
+                      "id": "633e0b55-21e5-4919-9365-346d013e1ac0",
+                      "name": "Document PDF",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/pdf"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/document/:document_id/download?type=with_history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "document",
+                            ":document_id",
+                            "download"
+                          ],
+                          "query": [
+                            {
+                              "description": "Download type",
+                              "key": "type",
+                              "value": "with_history"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/pdf"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-07-28T02:53:24.000Z",
+                      "updatedAt": "2026-07-28T02:53:24.000Z",
+                      "uid": "35240-633e0b55-21e5-4919-9365-346d013e1ac0"
+                    },
+                    {
+                      "id": "c3495ffb-b4ef-4106-9643-16784b8a5ba0",
+                      "name": "Document not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/document/:document_id/download?type=with_history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "document",
+                            ":document_id",
+                            "download"
+                          ],
+                          "query": [
+                            {
+                              "description": "Download type",
+                              "key": "type",
+                              "value": "with_history"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:53:24.000Z",
+                      "updatedAt": "2026-07-28T02:53:24.000Z",
+                      "uid": "35240-c3495ffb-b4ef-4106-9643-16784b8a5ba0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:53:24.000Z",
+                  "updatedAt": "2026-07-28T02:53:24.000Z",
+                  "uid": "35240-55cfa4ff-4144-487d-8144-b1d2ef3eee6b"
+                }
+              ],
+              "id": "2053f42f-0908-4f9f-be59-f5c9e935e2a4",
+              "createdAt": "2026-07-28T02:53:24.000Z",
+              "updatedAt": "2026-07-28T02:53:24.000Z",
+              "uid": "35240-2053f42f-0908-4f9f-be59-f5c9e935e2a4"
+            },
+            {
+              "name": "Get Document",
+              "id": "4ebeefbf-a8b1-4a1f-893a-79e6ff67c926",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/document/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "document",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "53df1551-020d-4736-8516-8eee95c9d347",
+                      "key": "document_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve document details including fields, signers, and status."
+              },
+              "response": [
+                {
+                  "id": "f32e8484-66f1-4404-b23b-378aa3d5a343",
+                  "name": "Document details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/document/:document_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "document",
+                        ":document_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "document_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"document_name\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"updated\": \"<dateTime>\",\n  \"origin_document_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"roles\": [\n    {\n      \"unique_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"signing_order\": \"<integer>\"\n    },\n    {\n      \"unique_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"signing_order\": \"<integer>\"\n    }\n  ],\n  \"fields\": [\n    {\n      \"type\": \"date\",\n      \"x\": \"<number>\",\n      \"y\": \"<number>\",\n      \"width\": \"<number>\",\n      \"height\": \"<number>\",\n      \"page_number\": \"<integer>\",\n      \"role_id\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"type\": \"initials\",\n      \"x\": \"<number>\",\n      \"y\": \"<number>\",\n      \"width\": \"<number>\",\n      \"height\": \"<number>\",\n      \"page_number\": \"<integer>\",\n      \"role_id\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"signer_email\": \"<email>\",\n      \"status\": \"declined\",\n      \"created\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"signer_email\": \"<email>\",\n      \"status\": \"fulfilled\",\n      \"created\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_count\": \"<integer>\",\n  \"signing_session_caching\": \"<boolean>\",\n  \"fieldinvite_status\": \"pending\"\n}",
+                  "createdAt": "2026-07-28T02:53:24.000Z",
+                  "updatedAt": "2026-07-28T02:53:24.000Z",
+                  "uid": "35240-f32e8484-66f1-4404-b23b-378aa3d5a343"
+                },
+                {
+                  "id": "640603e0-37f6-4911-9380-a8501dd0aee6",
+                  "name": "Document not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/document/:document_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "document",
+                        ":document_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "document_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:53:24.000Z",
+                  "updatedAt": "2026-07-28T02:53:24.000Z",
+                  "uid": "35240-640603e0-37f6-4911-9380-a8501dd0aee6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:24.000Z",
+              "updatedAt": "2026-07-28T02:53:24.000Z",
+              "uid": "35240-4ebeefbf-a8b1-4a1f-893a-79e6ff67c926"
+            },
+            {
+              "name": "Delete Document",
+              "id": "de05a0d2-45a8-436b-ac4e-ebe0eb5931fa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/document/:document_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "document",
+                    ":document_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9d4ae531-275b-4222-b5a0-b08e8c2a2b8c",
+                      "key": "document_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "description": "Permanently delete a document from SignNow."
+              },
+              "response": [
+                {
+                  "id": "37ccfc2c-236d-46e8-8dab-467560f4c28c",
+                  "name": "Document deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/document/:document_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "document",
+                        ":document_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "document_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:53:24.000Z",
+                  "updatedAt": "2026-07-28T02:53:24.000Z",
+                  "uid": "35240-37ccfc2c-236d-46e8-8dab-467560f4c28c"
+                },
+                {
+                  "id": "d4f90f44-9434-4480-9709-25e9af7bb687",
+                  "name": "Document not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/document/:document_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "document",
+                        ":document_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "document_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:53:24.000Z",
+                  "updatedAt": "2026-07-28T02:53:24.000Z",
+                  "uid": "35240-d4f90f44-9434-4480-9709-25e9af7bb687"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:24.000Z",
+              "updatedAt": "2026-07-28T02:53:24.000Z",
+              "uid": "35240-de05a0d2-45a8-436b-ac4e-ebe0eb5931fa"
+            }
+          ],
+          "id": "f015bc68-0eb4-44c0-99a8-e641e54ed11e",
+          "createdAt": "2026-07-28T02:53:24.000Z",
+          "updatedAt": "2026-07-28T02:53:24.000Z",
+          "uid": "35240-f015bc68-0eb4-44c0-99a8-e641e54ed11e"
+        },
+        {
+          "name": "List Documents",
+          "id": "de83be65-f09b-49ac-a1ee-c3b51a53aba6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/document?per_page=20&page=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "document"
+              ],
+              "query": [
+                {
+                  "description": "Number of documents per page",
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number",
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Retrieve a list of all documents for the authenticated user."
+          },
+          "response": [
+            {
+              "id": "7e6a02cd-b39e-416f-9939-6ad8b715fe6b",
+              "name": "List of documents",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/document?per_page=20&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "document"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of documents per page",
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"document_name\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"origin_document_id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"roles\": [\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      },\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"text\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      },\n      {\n        \"type\": \"date\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      }\n    ],\n    \"requests\": [\n      {\n        \"id\": \"<string>\",\n        \"signer_email\": \"<email>\",\n        \"status\": \"expired\",\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"signer_email\": \"<email>\",\n        \"status\": \"declined\",\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"page_count\": \"<integer>\",\n    \"signing_session_caching\": \"<boolean>\",\n    \"fieldinvite_status\": \"declined\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"document_name\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"origin_document_id\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"roles\": [\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      },\n      {\n        \"unique_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"signing_order\": \"<integer>\"\n      }\n    ],\n    \"fields\": [\n      {\n        \"type\": \"date\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      },\n      {\n        \"type\": \"radiobutton\",\n        \"x\": \"<number>\",\n        \"y\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"page_number\": \"<integer>\",\n        \"role_id\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"label\": \"<string>\"\n      }\n    ],\n    \"requests\": [\n      {\n        \"id\": \"<string>\",\n        \"signer_email\": \"<email>\",\n        \"status\": \"declined\",\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"signer_email\": \"<email>\",\n        \"status\": \"fulfilled\",\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"page_count\": \"<integer>\",\n    \"signing_session_caching\": \"<boolean>\",\n    \"fieldinvite_status\": \"declined\"\n  }\n]",
+              "createdAt": "2026-07-28T02:53:24.000Z",
+              "updatedAt": "2026-07-28T02:53:24.000Z",
+              "uid": "35240-7e6a02cd-b39e-416f-9939-6ad8b715fe6b"
+            },
+            {
+              "id": "4b9fc103-5996-46f5-8e43-17ddcfbd8bc3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/document?per_page=20&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "document"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of documents per page",
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:53:24.000Z",
+              "updatedAt": "2026-07-28T02:53:24.000Z",
+              "uid": "35240-4b9fc103-5996-46f5-8e43-17ddcfbd8bc3"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:24.000Z",
+          "updatedAt": "2026-07-28T02:53:24.000Z",
+          "uid": "35240-de83be65-f09b-49ac-a1ee-c3b51a53aba6"
+        },
+        {
+          "name": "Upload Document",
+          "id": "5423dc7c-4ea7-4612-b7c2-274f3b52cde4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "description": "(Required) PDF file to upload",
+                  "key": "file",
+                  "type": "file",
+                  "value": null
+                },
+                {
+                  "description": "Comma-separated tags",
+                  "key": "Tags",
+                  "value": "<string>",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/document",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "document"
+              ]
+            },
+            "description": "Upload a PDF document to SignNow for e-signature processing."
+          },
+          "response": [
+            {
+              "id": "e1630f18-9b83-4373-a9b4-76da4dd84e3e",
+              "name": "Document uploaded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) PDF file to upload",
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": "Comma-separated tags",
+                      "key": "Tags",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/document",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "document"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:53:24.000Z",
+              "updatedAt": "2026-07-28T02:53:24.000Z",
+              "uid": "35240-e1630f18-9b83-4373-a9b4-76da4dd84e3e"
+            },
+            {
+              "id": "6308352e-2520-4026-af59-6714c9b25664",
+              "name": "Invalid file",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) PDF file to upload",
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": "Comma-separated tags",
+                      "key": "Tags",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/document",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "document"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:53:24.000Z",
+              "updatedAt": "2026-07-28T02:53:24.000Z",
+              "uid": "35240-6308352e-2520-4026-af59-6714c9b25664"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:24.000Z",
+          "updatedAt": "2026-07-28T02:53:24.000Z",
+          "uid": "35240-5423dc7c-4ea7-4612-b7c2-274f3b52cde4"
+        }
+      ],
+      "id": "3c941944-4b84-4c4e-a9ac-1127e51f6bf5",
+      "createdAt": "2026-07-28T02:53:24.000Z",
+      "updatedAt": "2026-07-28T02:53:24.000Z",
+      "uid": "35240-3c941944-4b84-4c4e-a9ac-1127e51f6bf5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.signnow.com"
+    }
+  ]
+}

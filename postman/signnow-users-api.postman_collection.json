@@ -1,0 +1,394 @@
+{
+  "info": {
+    "_postman_id": "43ac7466-8711-4c97-a7b9-d83ca9554214",
+    "name": "SignNow REST Authentication Users API",
+    "description": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:54:17.000Z",
+    "updatedAt": "2026-07-28T02:54:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-43ac7466-8711-4c97-a7b9-d83ca9554214"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "me",
+          "item": [
+            {
+              "name": "Get Current User",
+              "id": "30f4683b-24cc-4f54-b248-0e3fde813de9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "me"
+                  ]
+                },
+                "description": "Retrieve the profile information for the authenticated user."
+              },
+              "response": [
+                {
+                  "id": "fea2dc13-598f-4432-b754-3959baa3e196",
+                  "name": "User profile",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"organization\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"credits\": \"<integer>\",\n  \"subscription\": {\n    \"api_requests_limit\": \"<integer>\",\n    \"api_requests_used\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:54:18.000Z",
+                  "updatedAt": "2026-07-28T02:54:18.000Z",
+                  "uid": "35240-fea2dc13-598f-4432-b754-3959baa3e196"
+                },
+                {
+                  "id": "641f0977-55c3-4a0f-ab9f-32b498c1e8f2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:54:18.000Z",
+                  "updatedAt": "2026-07-28T02:54:18.000Z",
+                  "uid": "35240-641f0977-55c3-4a0f-ab9f-32b498c1e8f2"
+                }
+              ],
+              "createdAt": "2026-07-28T02:54:18.000Z",
+              "updatedAt": "2026-07-28T02:54:18.000Z",
+              "uid": "35240-30f4683b-24cc-4f54-b248-0e3fde813de9"
+            }
+          ],
+          "id": "246d4cf8-434b-4228-b01a-a1840a712df7",
+          "createdAt": "2026-07-28T02:54:18.000Z",
+          "updatedAt": "2026-07-28T02:54:18.000Z",
+          "uid": "35240-246d4cf8-434b-4228-b01a-a1840a712df7"
+        },
+        {
+          "name": "{user_id}",
+          "item": [
+            {
+              "name": "Get User",
+              "id": "b3b49e92-d2fa-4751-8819-1011e6ec15bd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/:user_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    ":user_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9f6325b0-9e13-4d2f-b386-444816b86d1d",
+                      "key": "user_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique user identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve profile information for a specific user by ID."
+              },
+              "response": [
+                {
+                  "id": "ba7fb561-f552-461e-97d7-679e402c1772",
+                  "name": "User profile",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"organization\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"credits\": \"<integer>\",\n  \"subscription\": {\n    \"api_requests_limit\": \"<integer>\",\n    \"api_requests_used\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:54:18.000Z",
+                  "updatedAt": "2026-07-28T02:54:18.000Z",
+                  "uid": "35240-ba7fb561-f552-461e-97d7-679e402c1772"
+                },
+                {
+                  "id": "0ac325d4-08ea-476c-98b6-ad97ef2b8188",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:54:18.000Z",
+                  "updatedAt": "2026-07-28T02:54:18.000Z",
+                  "uid": "35240-0ac325d4-08ea-476c-98b6-ad97ef2b8188"
+                }
+              ],
+              "createdAt": "2026-07-28T02:54:18.000Z",
+              "updatedAt": "2026-07-28T02:54:18.000Z",
+              "uid": "35240-b3b49e92-d2fa-4751-8819-1011e6ec15bd"
+            }
+          ],
+          "id": "2f1a5794-d16b-4dd2-8285-f0eccdc1996c",
+          "createdAt": "2026-07-28T02:54:18.000Z",
+          "updatedAt": "2026-07-28T02:54:18.000Z",
+          "uid": "35240-2f1a5794-d16b-4dd2-8285-f0eccdc1996c"
+        },
+        {
+          "name": "Create User",
+          "id": "4a5a0fb6-5906-4e80-819e-ec96a2631004",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "description": "Create a new SignNow user account."
+          },
+          "response": [
+            {
+              "id": "6873a5b0-93da-409e-ab9f-fe5d29a61a3a",
+              "name": "User created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:54:18.000Z",
+              "updatedAt": "2026-07-28T02:54:18.000Z",
+              "uid": "35240-6873a5b0-93da-409e-ab9f-fe5d29a61a3a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:54:18.000Z",
+          "updatedAt": "2026-07-28T02:54:18.000Z",
+          "uid": "35240-4a5a0fb6-5906-4e80-819e-ec96a2631004"
+        }
+      ],
+      "id": "57a3978f-fe37-445e-a33f-5cd62bfbfc02",
+      "createdAt": "2026-07-28T02:54:18.000Z",
+      "updatedAt": "2026-07-28T02:54:18.000Z",
+      "uid": "35240-57a3978f-fe37-445e-a33f-5cd62bfbfc02"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.signnow.com"
+    }
+  ]
+}

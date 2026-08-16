@@ -5,7 +5,7 @@
       "source": "https://www.signnow.com/blog/blog/feed/",
       "feed_url": "https://www.signnow.com/blog/blog/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 2,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-08-06T14:08:46Z",
-  "post_count": 18
+  "fetched": "2026-08-15T12:11:08Z",
+  "post_count": 20
 }

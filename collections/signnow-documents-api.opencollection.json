@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SignNow REST Authentication Documents API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/document",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of documents per page"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all documents for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Upload Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signnow.com/document",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "Tags",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a PDF document to SignNow for e-signature processing."
+        },
+        {
+          "info": {
+            "name": "Get Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/document/:document_id",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve document details including fields, signers, and status."
+        },
+        {
+          "info": {
+            "name": "Delete Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.signnow.com/document/:document_id",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              }
+            ]
+          },
+          "docs": "Permanently delete a document from SignNow."
+        },
+        {
+          "info": {
+            "name": "Download Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/document/:document_id/download",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Download type"
+              }
+            ]
+          },
+          "docs": "Download a document as a PDF file, including signatures and completed fields."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

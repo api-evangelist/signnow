@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SignNow REST Authentication Signing API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Signature Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signnow.com/document/:document_id/invite",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a signature invitation to one or more recipients for a document."
+        },
+        {
+          "info": {
+            "name": "Cancel Signature Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.signnow.com/document/:document_id/fieldinvitecancel",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique document identifier"
+              }
+            ]
+          },
+          "docs": "Cancel all pending signature invitations for a document."
+        },
+        {
+          "info": {
+            "name": "Send Bulk Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signnow.com/template/:template_id/bulkinvite",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique template identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subject",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "message",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Send signature invitations to multiple recipients using a CSV file with template-based documents."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

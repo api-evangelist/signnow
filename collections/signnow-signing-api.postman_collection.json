@@ -1,0 +1,523 @@
+{
+  "item": [
+    {
+      "id": "f38e0fcb-95d3-45e5-8b3f-28585714dea4",
+      "name": "Signing",
+      "description": {
+        "content": "Send signature invitations and manage signers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32b7c863-6c7e-497d-badc-cd116e4da9e5",
+          "name": "Send Signature Invite",
+          "request": {
+            "name": "Send Signature Invite",
+            "description": {
+              "content": "Send a signature invitation to one or more recipients for a document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                ":document_id",
+                "invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_id",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5a1c5df-625f-4e8f-bee0-5ea27ff37de8",
+              "name": "Invitations sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b70df9da-7398-4bdc-874e-a0ceb6f87406",
+              "name": "Invalid invite request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"role_id\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"subject\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"from\": \"<email>\",\n  \"cc\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"subject\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 5150,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 2457,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87f7c449-e550-477f-b1ec-b82c6e6ff02c",
+          "name": "Cancel Signature Invite",
+          "request": {
+            "name": "Cancel Signature Invite",
+            "description": {
+              "content": "Cancel all pending signature invitations for a document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                ":document_id",
+                "fieldinvitecancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_id",
+                  "description": "(Required) Unique document identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0269d39c-7db3-4faf-a3b9-ea2fd4305157",
+              "name": "Invite cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "fieldinvitecancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "074d6f17-d785-4a46-803e-10f7721e4f29",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    ":document_id",
+                    "fieldinvitecancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_id",
+                      "description": "(Required) Unique document identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8694d28a-fafc-48c8-9b45-fae880f14e59",
+          "name": "Send Bulk Invite",
+          "request": {
+            "name": "Send Bulk Invite",
+            "description": {
+              "content": "Send signature invitations to multiple recipients using a CSV file with template-based documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "template",
+                ":template_id",
+                "bulkinvite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) Unique template identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) CSV file with recipient data"
+                },
+                {
+                  "key": "subject",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Email subject line"
+                },
+                {
+                  "key": "message",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Email message body"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5a023a8a-1eb8-4756-86c4-a2f619d9ecf6",
+              "name": "Bulk invites sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "template",
+                    ":template_id",
+                    "bulkinvite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) Unique template identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with recipient data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Email subject line",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Email message body",
+                        "type": "text/plain"
+                      },
+                      "key": "message",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.signnow.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f183524b-69b6-4bb3-a90c-3325a3a8cd37",
+    "name": "SignNow REST Authentication Signing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.\n\nContact Support:\n Name: SignNow API Support\n Email: api@signnow.com",
+      "type": "text/plain"
+    }
+  }
+}

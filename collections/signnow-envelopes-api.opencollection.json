@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SignNow REST Authentication Envelopes API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Envelopes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Envelopes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/documentgroup"
+          },
+          "docs": "Retrieve all document group envelopes for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create Envelope",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signnow.com/documentgroup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new document group envelope combining multiple documents for coordinated signing."
+        },
+        {
+          "info": {
+            "name": "Get Envelope",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/documentgroup/:group_id",
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique envelope/document group identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific document group envelope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

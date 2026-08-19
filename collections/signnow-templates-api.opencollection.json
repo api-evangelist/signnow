@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SignNow REST Authentication Templates API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/template"
+          },
+          "docs": "Retrieve all document templates for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signnow.com/template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new reusable document template from an uploaded document."
+        },
+        {
+          "info": {
+            "name": "Get Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/template/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique template identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific document template."
+        },
+        {
+          "info": {
+            "name": "Delete Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.signnow.com/template/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique template identifier"
+              }
+            ]
+          },
+          "docs": "Delete a document template from SignNow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

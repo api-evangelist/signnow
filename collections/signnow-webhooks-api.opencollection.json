@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SignNow REST Authentication Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signnow.com/api/events"
+          },
+          "docs": "Retrieve all registered webhook event subscriptions for the account."
+        },
+        {
+          "info": {
+            "name": "Create Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signnow.com/api/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe to a SignNow event by registering a webhook endpoint URL."
+        },
+        {
+          "info": {
+            "name": "Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.signnow.com/api/events/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique webhook identifier"
+              }
+            ]
+          },
+          "docs": "Remove a webhook event subscription by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

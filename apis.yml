@@ -23,6 +23,11 @@ modified: '2026-05-19'
 specificationVersion: '0.23'
 tags:
   - E-Signature
+  - Document-Management
+  - Electronic Signature
+  - Workflow-Automation
+tags_raw:
+  - E-Signature
   - Document Management
   - Electronic Signature
   - Workflow Automation
@@ -148,6 +153,8 @@ apis:
   humanURL: https://docs.signnow.com/docs/signnow/welcome
   baseURL: https://api.signnow.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -171,6 +178,8 @@ apis:
   humanURL: https://docs.signnow.com/docs/signnow/welcome
   baseURL: https://api.signnow.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI

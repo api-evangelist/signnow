@@ -3,6 +3,18 @@ description: >-
   SignNow is an e-signature platform by airSlate that enables businesses to send, sign, and manage legally binding
   documents electronically. It provides a REST API for embedding e-signature workflows, document creation, template
   management, and bulk signing operations into any application.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve

@@ -211,6 +211,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/rules/signnow-rules.yml
 common:
+  - type: Website
+    url: https://www.signnow.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/signnow/overview
   - type: AgenticAccess

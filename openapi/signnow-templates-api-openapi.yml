@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: SignNow REST Authentication Templates API
+  title: SignNow REST Templates API
   description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
   version: '2.0'
   contact:
@@ -119,6 +119,39 @@ paths:
                     type: string
 components:
   schemas:
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Template ID
+        document_name:
+          type: string
+          description: Template name
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              unique_id:
+                type: string
+              name:
+                type: string
+              signing_order:
+                type: integer
+          description: Signing roles in this template
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        page_count:
+          type: integer
     Field:
       type: object
       properties:
@@ -157,39 +190,6 @@ components:
         label:
           type: string
           description: Field label
-    Template:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Template ID
-        document_name:
-          type: string
-          description: Template name
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              unique_id:
-                type: string
-              name:
-                type: string
-              signing_order:
-                type: integer
-          description: Signing roles in this template
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        page_count:
-          type: integer
   securitySchemes:
     BearerAuth:
       type: http

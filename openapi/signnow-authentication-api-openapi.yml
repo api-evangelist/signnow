@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SignNow REST Authentication API
   description: The SignNow REST API enables developers to embed legally binding e-signature workflows into any application. It supports document upload, template-based signing workflows, signature invitations, bulk signing, user management, and webhook notifications.
@@ -81,6 +81,18 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
     OAuthToken:
       type: object
       properties:
@@ -99,18 +111,6 @@ components:
         scope:
           type: string
           description: Token scope
-    Error:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: integer
-              message:
-                type: string
   securitySchemes:
     BearerAuth:
       type: http

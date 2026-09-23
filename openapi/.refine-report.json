@@ -1,13 +1,7 @@
 {
   "provider": "signnow",
   "sources": [
-    "signnow-authentication-api-openapi.yml",
-    "signnow-documents-api-openapi.yml",
-    "signnow-envelopes-api-openapi.yml",
-    "signnow-signing-api-openapi.yml",
-    "signnow-templates-api-openapi.yml",
-    "signnow-users-api-openapi.yml",
-    "signnow-webhooks-api-openapi.yml"
+    "_original/signnow-openapi.yml"
   ],
   "outputs": [
     "signnow-authentication-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "signnow-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "signnow-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "signnow-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "signnow-envelopes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "signnow-signing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "signnow-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "signnow-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "signnow-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

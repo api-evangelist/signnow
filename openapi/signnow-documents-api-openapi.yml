@@ -187,6 +187,27 @@ paths:
           description: Document not found
 components:
   schemas:
+    SigningRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        signer_email:
+          type: string
+          format: email
+        status:
+          type: string
+          enum:
+          - pending
+          - fulfilled
+          - declined
+          - expired
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
     Error:
       type: object
       properties:
@@ -262,27 +283,6 @@ components:
           - declined
           - expired
           description: Overall invite status
-    SigningRequest:
-      type: object
-      properties:
-        id:
-          type: string
-        signer_email:
-          type: string
-          format: email
-        status:
-          type: string
-          enum:
-          - pending
-          - fulfilled
-          - declined
-          - expired
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
     Field:
       type: object
       properties:

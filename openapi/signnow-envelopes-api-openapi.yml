@@ -85,19 +85,6 @@ paths:
           description: Envelope not found
 components:
   schemas:
-    EnvelopeRequest:
-      type: object
-      required:
-      - document_ids
-      properties:
-        document_ids:
-          type: array
-          items:
-            type: string
-          description: List of document IDs to include in envelope
-        routing_details:
-          type: object
-          description: Routing and signing order configuration
     Envelope:
       type: object
       properties:
@@ -126,6 +113,19 @@ components:
               type: array
               items:
                 type: object
+    EnvelopeRequest:
+      type: object
+      required:
+      - document_ids
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          description: List of document IDs to include in envelope
+        routing_details:
+          type: object
+          description: Routing and signing order configuration
   securitySchemes:
     BearerAuth:
       type: http

@@ -119,6 +119,39 @@ paths:
                     type: string
 components:
   schemas:
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Template ID
+        document_name:
+          type: string
+          description: Template name
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              unique_id:
+                type: string
+              name:
+                type: string
+              signing_order:
+                type: integer
+          description: Signing roles in this template
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        page_count:
+          type: integer
     Field:
       type: object
       properties:
@@ -157,39 +190,6 @@ components:
         label:
           type: string
           description: Field label
-    Template:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Template ID
-        document_name:
-          type: string
-          description: Template name
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              unique_id:
-                type: string
-              name:
-                type: string
-              signing_order:
-                type: integer
-          description: Signing roles in this template
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        page_count:
-          type: integer
   securitySchemes:
     BearerAuth:
       type: http

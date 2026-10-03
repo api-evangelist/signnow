@@ -88,6 +88,23 @@ paths:
           description: User not found
 components:
   schemas:
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      - password
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
     User:
       type: object
       properties:
@@ -118,23 +135,6 @@ components:
               type: integer
             api_requests_used:
               type: integer
-    CreateUserRequest:
-      type: object
-      required:
-      - email
-      - password
-      - first_name
-      - last_name
-      properties:
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

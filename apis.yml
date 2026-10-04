@@ -213,6 +213,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/signnow/refs/heads/main/rules/signnow-rules.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/signnow-capability-edges.yml
+    name: SignNow Business Capability Map
   - type: Website
     url: https://www.signnow.com/
   - type: PostmanWorkspace

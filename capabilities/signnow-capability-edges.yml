@@ -1,0 +1,45 @@
+slug: signnow
+provider: SignNow
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Signing
+  spec_file: signnow-signing-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.75
+  evidence: POST /document/{document_id}/invite sendSignatureInvite 'Send Signature Invite'; POST /template/{template_id}/bulkinvite
+    'Send Bulk Invite'
+  reason: Sending and cancelling signature invitations is the execution/signature stage of the contract
+    lifecycle on a legally binding e-signature platform.
+- tag: Webhooks
+  spec_file: signnow-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: 'GET /api/events listWebhooks "List Webhooks"; POST /api/events createWebhook "Create Webhook";
+    schemas: WebhookRequest, Webhook — "webhook notifications" in the API description'
+  reason: Operations manage the lifecycle of outbound event/webhook subscriptions exposed by the vendor's
+    public API, which is exactly BC-4270.80 Webhook & Event Subscription Management. Confidence held below
+    0.8 because webhook CRUD is thin, integration-plumbing surface rather than a richer ecosystem capability.
+- tag: Envelopes
+  spec_file: signnow-envelopes-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.7
+  evidence: POST /documentgroup createEnvelope 'Create Envelope'; schemas 'Envelope, EnvelopeRequest'
+  reason: Envelopes (document groups) bundle documents for signature execution on an e-signature platform
+    — contract execution within Contract Management.

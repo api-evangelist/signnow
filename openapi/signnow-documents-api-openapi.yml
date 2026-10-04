@@ -199,44 +199,27 @@ components:
                 type: integer
               message:
                 type: string
-    Field:
+    SigningRequest:
       type: object
       properties:
-        type:
+        id:
+          type: string
+        signer_email:
+          type: string
+          format: email
+        status:
           type: string
           enum:
-          - signature
-          - initials
-          - text
-          - date
-          - checkbox
-          - dropdown
-          - radiobutton
-          description: Field type
-        x:
-          type: number
-          description: X coordinate on page
-        y:
-          type: number
-          description: Y coordinate on page
-        width:
-          type: number
-          description: Field width
-        height:
-          type: number
-          description: Field height
-        page_number:
-          type: integer
-          description: Page number (0-indexed)
-        role_id:
+          - pending
+          - fulfilled
+          - declined
+          - expired
+        created:
           type: string
-          description: Role assigned to fill this field
-        required:
-          type: boolean
-          description: Whether this field is required
-        label:
+          format: date-time
+        updated:
           type: string
-          description: Field label
+          format: date-time
     Document:
       type: object
       properties:
@@ -300,27 +283,44 @@ components:
           - declined
           - expired
           description: Overall invite status
-    SigningRequest:
+    Field:
       type: object
       properties:
-        id:
-          type: string
-        signer_email:
-          type: string
-          format: email
-        status:
+        type:
           type: string
           enum:
-          - pending
-          - fulfilled
-          - declined
-          - expired
-        created:
+          - signature
+          - initials
+          - text
+          - date
+          - checkbox
+          - dropdown
+          - radiobutton
+          description: Field type
+        x:
+          type: number
+          description: X coordinate on page
+        y:
+          type: number
+          description: Y coordinate on page
+        width:
+          type: number
+          description: Field width
+        height:
+          type: number
+          description: Field height
+        page_number:
+          type: integer
+          description: Page number (0-indexed)
+        role_id:
           type: string
-          format: date-time
-        updated:
+          description: Role assigned to fill this field
+        required:
+          type: boolean
+          description: Whether this field is required
+        label:
           type: string
-          format: date-time
+          description: Field label
   securitySchemes:
     BearerAuth:
       type: http

@@ -81,18 +81,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: integer
-              message:
-                type: string
     OAuthToken:
       type: object
       properties:
@@ -111,6 +99,18 @@ components:
         scope:
           type: string
           description: Token scope
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
   securitySchemes:
     BearerAuth:
       type: http

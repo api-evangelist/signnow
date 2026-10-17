@@ -86,6 +86,28 @@ paths:
                     type: string
 components:
   schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        event:
+          type: string
+          enum:
+          - document.update
+          - document.delete
+          - invite.update
+          - invite.decline
+          - document.create
+        entity_id:
+          type: string
+          description: Document or template ID to watch (optional)
+        action:
+          type: string
+          description: Webhook target URL
+        attributes:
+          type: object
+          additionalProperties: true
     WebhookRequest:
       type: object
       required:
@@ -107,28 +129,6 @@ components:
         action:
           type: string
           description: HTTPS URL to receive webhook events
-        attributes:
-          type: object
-          additionalProperties: true
-    Webhook:
-      type: object
-      properties:
-        id:
-          type: string
-        event:
-          type: string
-          enum:
-          - document.update
-          - document.delete
-          - invite.update
-          - invite.decline
-          - document.create
-        entity_id:
-          type: string
-          description: Document or template ID to watch (optional)
-        action:
-          type: string
-          description: Webhook target URL
         attributes:
           type: object
           additionalProperties: true

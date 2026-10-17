@@ -129,18 +129,6 @@ paths:
                     type: string
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: integer
-              message:
-                type: string
     InviteRequest:
       type: object
       required:
@@ -183,6 +171,18 @@ components:
         message:
           type: string
           description: Email message body
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
   securitySchemes:
     BearerAuth:
       type: http
